@@ -10,10 +10,11 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class VRegistroAlumnos extends JPanel {
-	private JTextField txtNExp;
 	private JTextField txt;
 	private JTextField txtPrimApellido;
 	private JTextField txtSegunApellido;
+	private JTextField txtNExp;
+	private JButton btnGuardarAlumno;
 
 	public VRegistroAlumnos() {
 		super();
@@ -68,7 +69,7 @@ public class VRegistroAlumnos extends JPanel {
 		txtSegunApellido.setBounds(429, 358, 151, 30);
 		add(txtSegunApellido);
 		
-		JButton btnGuardarAlumno = new JButton("Guardar Alumno");
+		btnGuardarAlumno = new JButton("Guardar Alumno");
 		btnGuardarAlumno.setBounds(10, 440, 570, 67);
 		add(btnGuardarAlumno);
 		iniciaizar();
