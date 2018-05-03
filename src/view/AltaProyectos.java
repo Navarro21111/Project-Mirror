@@ -14,7 +14,7 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
 public class AltaProyectos extends JPanel {
-	private JTextField txtAño;
+	private JTextField txtAnyo;
 	private JTextField txtNombre;
 	private JTextField txtURL;
 	public AltaProyectos() {
@@ -62,16 +62,16 @@ public class AltaProyectos extends JPanel {
 		JComboBox cbNota = new JComboBox();
 		cbNota.setBounds(335, 264, 86, 20);
 		
-		txtAño = new JTextField();
-		txtAño.setBounds(335, 217, 86, 20);
-		txtAño.setColumns(10);
+		txtAnyo = new JTextField();
+		txtAnyo.setBounds(335, 217, 86, 20);
+		txtAnyo.setColumns(10);
 		
 		txtNombre = new JTextField();
 		txtNombre.setBounds(264, 168, 279, 20);
 		txtNombre.setColumns(10);
 		setLayout(null);
 		add(cbNota);
-		add(txtAño);
+		add(txtAnyo);
 		add(txtNombre);
 		add(lblNombreDelProyecto);
 		add(lblCurso);
