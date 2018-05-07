@@ -7,7 +7,7 @@ public class TestAccesoDB {
 	public static void main(String[] args) {
 		String driver = "org.sqlite.JDBC";
 		String url = "jdbc:sqlite:src//persistencia//BDProjectMirror.db";
-		AccesoDB adb = new AccesoDB(driver, url);
+		AccesoDB adb = new AccesoDB();
 		try {
 			adb.getConexion();
 		} catch (ClassNotFoundException e) {

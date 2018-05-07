@@ -12,11 +12,17 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+
+import controlador.controlador;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Cursor;
 
 public class AltaProyectos extends JPanel {
 	private JTextField txtAnyo;
 	private JTextField txtNombre;
 	private JTextField txtURL;
+	private JButton btnHome;
 	public AltaProyectos() {
 		setForeground(Color.WHITE);
 		setBackground(new Color(44, 40, 41));
@@ -57,6 +63,7 @@ public class AltaProyectos extends JPanel {
 		lblUrlGithub.setForeground(Color.WHITE);
 		
 		JComboBox cbGrupo = new JComboBox();
+		cbGrupo.setModel(new DefaultComboBoxModel(new String[] {"Pene", "Culo"}));
 		cbGrupo.setBounds(122, 219, 86, 20);
 		
 		JComboBox cbNota = new JComboBox();
@@ -105,9 +112,20 @@ public class AltaProyectos extends JPanel {
 		lblAltaProyecto.setBounds(47, 63, 315, 66);
 		add(lblAltaProyecto);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\21724309.ALUMNOS\\Desktop\\Logos\\logoMirror2 copia 3.png"));
-		label.setBounds(335, 63, 248, 61);
-		add(label);
+		btnHome = new JButton("");
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnHome.setContentAreaFilled(false);
+		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
+		btnHome.setIcon(new ImageIcon(AltaProyectos.class.getResource("/images/Casitahome1.png")));
+		btnHome.setBounds(538, 6, 54, 55);
+		add(btnHome);
+	}
+	
+	public JButton getBtnHome() {
+		return btnHome;
+	}
+	
+	public void setControlador(controlador c) {
+		btnHome.addActionListener(c);
 	}
 }

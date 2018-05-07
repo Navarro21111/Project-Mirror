@@ -8,9 +8,9 @@ public class AccesoDB {
 	private String driver;
 	private String url;
 	
-	public AccesoDB(String driver, String url) {
-		this.driver = driver;
-		this.url = url;
+	public AccesoDB() {
+		this.driver = "org.sqlite.JDBC";
+		this.url = "jdbc:sqlite:src//persistencia//BDProjectMirror.db";
 	}
 	
 	public Connection getConexion() 

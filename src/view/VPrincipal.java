@@ -33,7 +33,6 @@ public class VPrincipal extends JFrame {
 	private JMenuItem mntmAlta;
 	private JMenuItem mntmBaja;
 	private JMenuItem mntmModificacin;
-	private JMenuItem mntmAreas;
 	private JMenuItem mntmAadirAlumnos;
 	private JMenuItem mntmEliminarAlumnos;
 	private JPanel panel_1;
@@ -42,6 +41,11 @@ public class VPrincipal extends JFrame {
 	private JLabel lblJuanNotario;
 	private JLabel lblMiguelSnchez;
 	private JLabel lblSergioNavarro;
+	private JMenuItem mntmEliminarAlumnos_1;
+	private JMenu mnCiclos;
+	private JMenuItem mntmAadirCiclos;
+	private JMenuItem mntmConsultarCiclos;
+	private JMenuItem mntmEliminarCiclos;
 
 	public VPrincipal(String titulo) throws HeadlessException {
 		super(titulo);
@@ -124,24 +128,23 @@ public class VPrincipal extends JFrame {
 		menuBar.setBorderPainted(false);
 		setJMenuBar(menuBar);
 		
-		JMenu mnPi = new JMenu("P.I.");
-		mnPi.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		mnPi.setMaximumSize(new Dimension(100, 100));
-		mnPi.setForeground(new Color(44, 40, 41));
-		mnPi.setPreferredSize(new Dimension(200, 22));
-		menuBar.add(mnPi);
+		JMenu mnProyectos = new JMenu("Proyectos");
+		mnProyectos.setMaximumSize(new Dimension(100, 100));
+		mnProyectos.setForeground(new Color(44, 40, 41));
+		mnProyectos.setPreferredSize(new Dimension(200, 22));
+		menuBar.add(mnProyectos);
 		
 		mntmConsultas = new JMenuItem("Consultas");
-		mnPi.add(mntmConsultas);
+		mnProyectos.add(mntmConsultas);
 		
 		mntmAlta = new JMenuItem("Alta");
-		mnPi.add(mntmAlta);
+		mnProyectos.add(mntmAlta);
 		
 		mntmBaja = new JMenuItem("Baja");
-		mnPi.add(mntmBaja);
+		mnProyectos.add(mntmBaja);
 		
 		mntmModificacin = new JMenuItem("Modificación");
-		mnPi.add(mntmModificacin);
+		mnProyectos.add(mntmModificacin);
 		
 		JMenu mnAlumnos = new JMenu("Alumnos");
 		mnAlumnos.setForeground(new Color(44, 40, 41));
@@ -150,17 +153,26 @@ public class VPrincipal extends JFrame {
 		mntmAadirAlumnos = new JMenuItem("Añadir Alumnos");
 		mnAlumnos.add(mntmAadirAlumnos);
 		
-		mntmEliminarAlumnos = new JMenuItem("Eliminar Alumnos");
+		mntmEliminarAlumnos_1 = new JMenuItem("Eliminar Alumnos");
+		mnAlumnos.add(mntmEliminarAlumnos_1);
+		
+		mntmEliminarAlumnos = new JMenuItem("Consultar Alumnos");
 		mnAlumnos.add(mntmEliminarAlumnos);
 		
 		JMenuItem mntmModificarAlumnos = new JMenuItem("Modificar Alumnos");
 		mnAlumnos.add(mntmModificarAlumnos);
 		
-		mntmAreas = new JMenuItem("Áreas");
-		mntmAreas.setMaximumSize(new Dimension(100, 100));
-		mntmAreas.setForeground(new Color(44, 40, 41));
-		mntmAreas.setBackground(Color.WHITE);
-		menuBar.add(mntmAreas);
+		mnCiclos = new JMenu("Ciclos");
+		menuBar.add(mnCiclos);
+		
+		mntmAadirCiclos = new JMenuItem("Añadir Ciclos");
+		mnCiclos.add(mntmAadirCiclos);
+		
+		mntmConsultarCiclos = new JMenuItem("Consultar Ciclos");
+		mnCiclos.add(mntmConsultarCiclos);
+		
+		mntmEliminarCiclos = new JMenuItem("Eliminar Ciclos");
+		mnCiclos.add(mntmEliminarCiclos);
 	}
 	
 	public void setPanel(JPanel panel) {
@@ -173,7 +185,10 @@ public class VPrincipal extends JFrame {
 		mntmConsultas.addActionListener(c);
 		mntmAadirAlumnos.addActionListener(c);
 		mntmEliminarAlumnos.addActionListener(c);
-		mntmAreas.addActionListener(c);
+		mntmAadirCiclos.addActionListener(c);
+		mntmConsultarCiclos.addActionListener(c);
+		mntmEliminarCiclos.addActionListener(c);
+		
 	}
 
 	public JMenuItem getMntmConsultas() {
@@ -200,7 +215,19 @@ public class VPrincipal extends JFrame {
 		return mntmEliminarAlumnos;
 	}
 
-	public JMenuItem getMntmAreas() {
-		return mntmAreas;
+	public JPanel getPanel1() {
+		return panel_1;
+	}
+
+	public JMenuItem getMntmAadirCiclos() {
+		return mntmAadirCiclos;
+	}
+
+	public JMenuItem getMntmConsultarCiclos() {
+		return mntmConsultarCiclos;
+	}
+
+	public JMenuItem getMntmEliminarCiclos() {
+		return mntmEliminarCiclos;
 	}
 }

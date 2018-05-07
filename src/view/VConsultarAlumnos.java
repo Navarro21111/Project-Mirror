@@ -7,39 +7,64 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
+
+import controlador.controlador;
+
 import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
+import java.awt.Cursor;
 
 public class VConsultarAlumnos extends JPanel {
+	private JButton btnMostrarAlumnos;
+	private JList JListAlum;
+	private JButton btnHome;
 	public VConsultarAlumnos() {
 		setBackground(new Color(44, 40, 41));
 		setLayout(null);
 		
 		JLabel lblConsultarAlumnos = new JLabel("Consultar Alumnos");
 		lblConsultarAlumnos.setForeground(Color.WHITE);
-		lblConsultarAlumnos.setFont(new Font("Comic Sans MS", Font.PLAIN, 50));
-		lblConsultarAlumnos.setBounds(72, 6, 463, 118);
+		lblConsultarAlumnos.setFont(new Font("Dialog", Font.PLAIN, 35));
+		lblConsultarAlumnos.setBounds(47, 24, 463, 118);
 		add(lblConsultarAlumnos);
 		
-		JButton btnMostrarAlumnos = new JButton("Mostrar Alumnos");
-		btnMostrarAlumnos.setBounds(191, 136, 204, 36);
+		btnMostrarAlumnos = new JButton("Mostrar Alumnos");
+		btnMostrarAlumnos.setBounds(190, 153, 204, 36);
 		add(btnMostrarAlumnos);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(85, 245, 445, 237);
+		scrollPane.setBounds(104, 280, 396, 231);
 		add(scrollPane);
 		
-		JList list = new JList();
-		list.setBounds(85, 245, 441, 237);
-		add(list);
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		JListAlum = new JList();
+		scrollPane.setViewportView(JListAlum);
+		
+		
+		btnHome = new JButton("");
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnHome.setIcon(new ImageIcon(VConsultarAlumnos.class.getResource("/images/Casitahome1.png")));
+		btnHome.setContentAreaFilled(false);
+		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
+		btnHome.setBounds(497, 30, 54, 55);
+		add(btnHome);
+	}
+	
+	public JButton getBtnMostrarAlumnos() {
+		return btnMostrarAlumnos;
+	}
+	
+	public void setControlador(controlador c) {
+		btnMostrarAlumnos.addActionListener(c);
+		btnHome.addActionListener(c);
+	}
+
+	public JButton getBtnHome() {
+		return btnHome;
+	}
+
+	public JList getJListAlum() {
+		return JListAlum;
 	}
 }
