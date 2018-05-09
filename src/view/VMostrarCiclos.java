@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import controlador.controlador;
+import model.PojoAlumno;
+import model.PojoCiclo;
 
 import javax.swing.ImageIcon;
 import javax.swing.JList;
@@ -16,16 +18,22 @@ import javax.swing.JScrollPane;
 public class VMostrarCiclos extends JPanel {
 	private JButton btnHome;
 	private JButton btnMostrarCiclos;
-	private JList JLMostrarCiclos;
+	private JScrollPane scrollPane;
+	private JList<PojoCiclo> JLMostrarCiclos;
+	private JButton btnEliminarCiclo;
+	private String nombre;
+	private String descripcion;
+	private JButton btnModificarCiclo;
+	
 	public VMostrarCiclos() {
 		setBackground(new Color(44, 40, 41));
 		setForeground(Color.WHITE);
 		setLayout(null);
 		
-		JLabel lblMostrarCiclos = new JLabel("Mostrar Ciclos");
+		JLabel lblMostrarCiclos = new JLabel("Gestionar Ciclos");
 		lblMostrarCiclos.setFont(new Font("Dialog", Font.PLAIN, 35));
 		lblMostrarCiclos.setForeground(Color.WHITE);
-		lblMostrarCiclos.setBounds(147, 76, 352, 54);
+		lblMostrarCiclos.setBounds(152, 47, 352, 54);
 		add(lblMostrarCiclos);
 		
 		btnHome = new JButton("");
@@ -36,15 +44,23 @@ public class VMostrarCiclos extends JPanel {
 		add(btnHome);
 		
 		btnMostrarCiclos = new JButton("Mostrar Ciclos");
-		btnMostrarCiclos.setBounds(179, 178, 219, 47);
+		btnMostrarCiclos.setBounds(180, 139, 219, 47);
 		add(btnMostrarCiclos);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(61, 267, 485, 254);
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(52, 208, 499, 235);
 		add(scrollPane);
 		
 		JLMostrarCiclos = new JList();
 		scrollPane.setViewportView(JLMostrarCiclos);
+		
+		btnEliminarCiclo = new JButton("Eliminar Ciclo");
+		btnEliminarCiclo.setBounds(71, 485, 188, 38);
+		add(btnEliminarCiclo);
+		
+		btnModificarCiclo = new JButton("Modificar Ciclo");
+		btnModificarCiclo.setBounds(328, 485, 188, 38);
+		add(btnModificarCiclo);
 	}
 	
 	public JButton getBtnHome() {
@@ -54,12 +70,27 @@ public class VMostrarCiclos extends JPanel {
 		return btnMostrarCiclos;
 	}
 	
+	public JButton getBtnEliminarCiclo() {
+		return btnEliminarCiclo;
+	}
+
 	public void setControlador(controlador c) {
 		btnHome.addActionListener(c);
 		btnMostrarCiclos.addActionListener(c);
+		btnEliminarCiclo.addActionListener(c);
 	}
 
-	public JList getJLMostrarCiclos() {
+	public JList<PojoCiclo> getJLMostrarCiclos() {
 		return JLMostrarCiclos;
+	}
+	
+	public PojoCiclo recogerDatos() {
+		nombre = JLMostrarCiclos.getSelectedValue().getNombre();
+		descripcion = JLMostrarCiclos.getSelectedValue().getDescripcion();
+		
+		
+		PojoCiclo datos = new PojoCiclo(nombre, descripcion);
+		
+		return datos;
 	}
 }

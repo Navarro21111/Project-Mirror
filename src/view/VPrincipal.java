@@ -34,18 +34,16 @@ public class VPrincipal extends JFrame {
 	private JMenuItem mntmBaja;
 	private JMenuItem mntmModificacin;
 	private JMenuItem mntmAadirAlumnos;
-	private JMenuItem mntmEliminarAlumnos;
+	private JMenuItem mntmGestionarAlumnos;
 	private JPanel panel_1;
 	private JLabel label_1;
 	private JLabel lblFundadores;
 	private JLabel lblJuanNotario;
 	private JLabel lblMiguelSnchez;
 	private JLabel lblSergioNavarro;
-	private JMenuItem mntmEliminarAlumnos_1;
 	private JMenu mnCiclos;
 	private JMenuItem mntmAadirCiclos;
 	private JMenuItem mntmConsultarCiclos;
-	private JMenuItem mntmEliminarCiclos;
 
 	public VPrincipal(String titulo) throws HeadlessException {
 		super(titulo);
@@ -153,14 +151,8 @@ public class VPrincipal extends JFrame {
 		mntmAadirAlumnos = new JMenuItem("Añadir Alumnos");
 		mnAlumnos.add(mntmAadirAlumnos);
 		
-		mntmEliminarAlumnos_1 = new JMenuItem("Eliminar Alumnos");
-		mnAlumnos.add(mntmEliminarAlumnos_1);
-		
-		mntmEliminarAlumnos = new JMenuItem("Consultar Alumnos");
-		mnAlumnos.add(mntmEliminarAlumnos);
-		
-		JMenuItem mntmModificarAlumnos = new JMenuItem("Modificar Alumnos");
-		mnAlumnos.add(mntmModificarAlumnos);
+		mntmGestionarAlumnos = new JMenuItem("Gestionar Alumnos");
+		mnAlumnos.add(mntmGestionarAlumnos);
 		
 		mnCiclos = new JMenu("Ciclos");
 		menuBar.add(mnCiclos);
@@ -168,11 +160,8 @@ public class VPrincipal extends JFrame {
 		mntmAadirCiclos = new JMenuItem("Añadir Ciclos");
 		mnCiclos.add(mntmAadirCiclos);
 		
-		mntmConsultarCiclos = new JMenuItem("Consultar Ciclos");
+		mntmConsultarCiclos = new JMenuItem("Gestionar Ciclos");
 		mnCiclos.add(mntmConsultarCiclos);
-		
-		mntmEliminarCiclos = new JMenuItem("Eliminar Ciclos");
-		mnCiclos.add(mntmEliminarCiclos);
 	}
 	
 	public void setPanel(JPanel panel) {
@@ -184,10 +173,9 @@ public class VPrincipal extends JFrame {
 		mntmBaja.addActionListener(c);
 		mntmConsultas.addActionListener(c);
 		mntmAadirAlumnos.addActionListener(c);
-		mntmEliminarAlumnos.addActionListener(c);
+		mntmGestionarAlumnos.addActionListener(c);
 		mntmAadirCiclos.addActionListener(c);
 		mntmConsultarCiclos.addActionListener(c);
-		mntmEliminarCiclos.addActionListener(c);
 		
 	}
 
@@ -212,7 +200,7 @@ public class VPrincipal extends JFrame {
 	}
 	
 	public JMenuItem getMntmConsultarAlumnos() {
-		return mntmEliminarAlumnos;
+		return mntmGestionarAlumnos;
 	}
 
 	public JPanel getPanel1() {
@@ -225,9 +213,5 @@ public class VPrincipal extends JFrame {
 
 	public JMenuItem getMntmConsultarCiclos() {
 		return mntmConsultarCiclos;
-	}
-
-	public JMenuItem getMntmEliminarCiclos() {
-		return mntmEliminarCiclos;
 	}
 }

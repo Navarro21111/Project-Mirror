@@ -14,4 +14,9 @@ public class PojoCiclo {
 	public String getDescripcion() {
 		return descripcion;
 	}
+	
+	@Override
+	public String toString() {
+		return "Nombre: " + nombre + ", descripcion: " + descripcion;
+	}
 }

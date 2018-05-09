@@ -11,15 +11,22 @@ import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 
 import controlador.controlador;
+import model.PojoAlumno;
 
 import javax.swing.JScrollPane;
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
 
 public class VConsultarAlumnos extends JPanel {
-	private JButton btnMostrarAlumnos;
-	private JList JListAlum;
 	private JButton btnHome;
+	private JList<PojoAlumno> JListAlum;
+	private JButton btnEliminarAlumno;
+	private JButton btnModificarAlumno;
+	private int expediente;
+	private String nombre;
+	private String primApe;
+	private String segApe;
+	
 	public VConsultarAlumnos() {
 		setBackground(new Color(44, 40, 41));
 		setLayout(null);
@@ -27,19 +34,8 @@ public class VConsultarAlumnos extends JPanel {
 		JLabel lblConsultarAlumnos = new JLabel("Consultar Alumnos");
 		lblConsultarAlumnos.setForeground(Color.WHITE);
 		lblConsultarAlumnos.setFont(new Font("Dialog", Font.PLAIN, 35));
-		lblConsultarAlumnos.setBounds(47, 24, 463, 118);
+		lblConsultarAlumnos.setBounds(72, 23, 463, 118);
 		add(lblConsultarAlumnos);
-		
-		btnMostrarAlumnos = new JButton("Mostrar Alumnos");
-		btnMostrarAlumnos.setBounds(190, 153, 204, 36);
-		add(btnMostrarAlumnos);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(104, 280, 396, 231);
-		add(scrollPane);
-		
-		JListAlum = new JList();
-		scrollPane.setViewportView(JListAlum);
 		
 		
 		btnHome = new JButton("");
@@ -49,22 +45,54 @@ public class VConsultarAlumnos extends JPanel {
 		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
 		btnHome.setBounds(497, 30, 54, 55);
 		add(btnHome);
-	}
-	
-	public JButton getBtnMostrarAlumnos() {
-		return btnMostrarAlumnos;
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(116, 215, 358, 218);
+		add(scrollPane);
+		
+		JListAlum = new JList();
+		scrollPane.setViewportView(JListAlum);
+		
+		btnEliminarAlumno = new JButton("Eliminar Alumno");
+		btnEliminarAlumno.setBounds(52, 494, 170, 44);
+		add(btnEliminarAlumno);
+		
+		btnModificarAlumno = new JButton("Modificar Alumno");
+		btnModificarAlumno.setBounds(346, 494, 170, 44);
+		add(btnModificarAlumno);
 	}
 	
 	public void setControlador(controlador c) {
-		btnMostrarAlumnos.addActionListener(c);
 		btnHome.addActionListener(c);
+		btnEliminarAlumno.addActionListener(c);
+		btnModificarAlumno.addActionListener(c);
+		
 	}
 
 	public JButton getBtnHome() {
 		return btnHome;
 	}
+	
+	public JButton getBtnEliminarAlumno() {
+		return btnEliminarAlumno;
+	}
 
-	public JList getJListAlum() {
+	public JButton getBtnModificarAlumno() {
+		return btnModificarAlumno;
+	}
+
+	public JList<PojoAlumno> getJListAlum() {
 		return JListAlum;
+	}
+	
+	public PojoAlumno recogerDatos() {
+		expediente = JListAlum.getSelectedValue().getnExp();
+		nombre = JListAlum.getSelectedValue().getNombre();
+		primApe = JListAlum.getSelectedValue().getApellido1();
+		segApe = JListAlum.getSelectedValue().getApellido2();
+		
+		PojoAlumno datos = new PojoAlumno(expediente, nombre, primApe, segApe);
+		
+		return datos;
 	}
 }

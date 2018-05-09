@@ -1,6 +1,5 @@
 package persistencia;
 
-import java.beans.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,8 +8,9 @@ import java.sql.SQLException;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
+import model.PojoAlumno;
 import model.PojoCiclo;
-import view.VConsultarAlumnos;
+
 
 public class PersistenciaCiclos {
 	private AccesoDB acces;
@@ -40,10 +40,10 @@ public class PersistenciaCiclos {
 		}
 	}
 	
-	public DefaultListModel<String> mostrarCiclos() {
-		
+	public DefaultListModel<PojoCiclo> mostrarCiclos() {
+		PojoCiclo aux;
 		Connection con = null;
-		DefaultListModel<String> listCiclos = new DefaultListModel<>();
+		DefaultListModel<PojoCiclo> listCiclos = new DefaultListModel<>();
 		
 		String query = "SELECT * FROM Ciclos";
 		
@@ -55,7 +55,9 @@ public class PersistenciaCiclos {
 			
 			while (rset.next()) {
 				
-				listCiclos.addElement("Nombre: " + rset.getInt("Nombre") + " Descripción: " + rset.getString("Descripcion"));
+				aux = new PojoCiclo(rset.getString("Nombre"), rset.getString("Descripcion"));
+				listCiclos.addElement(aux);
+				
 			}
 			
 			rset.close();
@@ -66,5 +68,25 @@ public class PersistenciaCiclos {
 		}	
 		
 		return listCiclos;
+	}
+	
+	public void eliminarCiclos(PojoCiclo ciclo) {
+		
+		Connection con = null;
+		
+		try {
+			
+			con = acces.getConexion();
+			String query = "DELETE FROM Ciclos WHERE Nombre = ?";
+			        
+			PreparedStatement prest = con.prepareStatement(query);
+			prest.setString(1, ciclo.getNombre());
+			prest.execute();
+			
+			JOptionPane.showMessageDialog(null, "Ciclo eliminado");
+			
+		} catch(SQLException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
+		}
 	}
 }

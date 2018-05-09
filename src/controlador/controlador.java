@@ -10,7 +10,7 @@ import persistencia.PersistenciaCiclos;
 import view.AltaProyectos;
 import view.VConsultarAlumnos;
 import view.VInsertarCiclos;
-import view.VLogin;
+import view.VModificarAlumnos;
 import view.VMostrarCiclos;
 import view.VRegistroAlumnos;
 import view.VPrincipal;
@@ -21,20 +21,22 @@ public class controlador implements ActionListener {
 	private AltaProyectos altaProject;
 	private VRegistroAlumnos altaAlum;
 	private VConsultarAlumnos consultAlum;
-	private VLogin login;
+
 	private PersistenciaAlumnos persAlumnos;
 	private VInsertarCiclos insertCiclos;
 	private VMostrarCiclos mostrarCiclos;
 	private PersistenciaCiclos persCiclos;
+	private VModificarAlumnos modAlum;
 
 	public controlador(VPrincipal principal, AltaProyectos altaProject, VRegistroAlumnos altaAlum, VConsultarAlumnos consultAlum, 
-			VInsertarCiclos insertCiclos, VMostrarCiclos mostrarCiclos) {
+			VInsertarCiclos insertCiclos, VMostrarCiclos mostrarCiclos, VModificarAlumnos modAlum) {
 		this.principal = principal;
 		this.altaProject = altaProject;
 		this.altaAlum = altaAlum;
 		this.consultAlum = consultAlum;
 		this.insertCiclos = insertCiclos;
 		this.mostrarCiclos = mostrarCiclos;
+		this.modAlum = modAlum;
 	}
 
 	public void setAltaProject(AltaProyectos altaProject) {
@@ -43,10 +45,6 @@ public class controlador implements ActionListener {
 
 	public void setAltaAlum(VRegistroAlumnos altaAlum) {
 		this.altaAlum = altaAlum;
-	}
-
-	public void setLogin(VLogin login) {
-		this.login = login;
 	}
 
 	public void setConsultAlum(VConsultarAlumnos consultAlum) {
@@ -69,6 +67,10 @@ public class controlador implements ActionListener {
 		this.persCiclos = persCiclos;
 	}
 
+	public void setModAlum(VModificarAlumnos modAlum) {
+		this.modAlum = modAlum;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		if (e.getSource().equals(principal.getMntmAlta())) {
@@ -79,6 +81,7 @@ public class controlador implements ActionListener {
 			
 		} else if (e.getSource().equals(principal.getMntmConsultarAlumnos())) {
 			principal.setPanel(consultAlum);
+			consultAlum.getJListAlum().setModel(persAlumnos.mostrarAlumnos());
 			
 		} else if (e.getSource().equals(altaProject.getBtnHome())) {
 			principal.setPanel(principal.getPanel1());
@@ -91,9 +94,6 @@ public class controlador implements ActionListener {
 			
 		} else if (e.getSource().equals(consultAlum.getBtnHome())) {
 			principal.setPanel(principal.getPanel1());
-			
-		} else if (e.getSource().equals(consultAlum.getBtnMostrarAlumnos())) {
-			consultAlum.getJListAlum().setModel(persAlumnos.mostrarAlumnos());;
 			
 		} else if (e.getSource().equals(principal.getMntmAadirCiclos())) {
 			principal.setPanel(insertCiclos);
@@ -109,8 +109,25 @@ public class controlador implements ActionListener {
 			
 		} else if (e.getSource().equals(principal.getMntmConsultarCiclos())) {
 			principal.setPanel(mostrarCiclos);
+			
 		} else if (e.getSource().equals(mostrarCiclos.getBtnMostrarCiclos())) {
 			mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
+			
+		} else if (e.getSource().equals(consultAlum.getBtnEliminarAlumno())) {
+			persAlumnos.eliminarAlumnos(consultAlum.recogerDatos());
+			consultAlum.getJListAlum().setModel(persAlumnos.mostrarAlumnos());
+			
+		} else if (e.getSource().equals(modAlum.getBtnModificar())) {
+			persAlumnos.actualizarDatos(modAlum.recogerDatosMod());
+			
+		} else if (e.getSource().equals(consultAlum.getBtnModificarAlumno())) {
+			principal.setPanel(modAlum);
+			modAlum.blabla(consultAlum.recogerDatos());
+			
+		} else if (e.getSource().equals(mostrarCiclos.getBtnEliminarCiclo())) {
+			persCiclos.eliminarCiclos(mostrarCiclos.recogerDatos());
+			mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
 		}
+		
 	}
 }
