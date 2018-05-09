@@ -89,4 +89,24 @@ public class PersistenciaCiclos {
 			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
 		}
 	}
+	
+	public void actualizarDatos(PojoCiclo ciclo) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		String query = "UPDATE Ciclos SET Nombre = ?, Descripcion = ?";
+		
+		try {
+			
+			con = acces.getConexion();
+			ps = con.prepareStatement(query);
+			ps.setString(1, ciclo.getNombre());
+			ps.setString(2, ciclo.getDescripcion());
+			ps.executeUpdate();
+			
+			JOptionPane.showMessageDialog(null, "Ciclo actualizado");
+		} catch(SQLException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
+		}
+	}
 }

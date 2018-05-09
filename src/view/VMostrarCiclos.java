@@ -17,7 +17,6 @@ import javax.swing.JScrollPane;
 
 public class VMostrarCiclos extends JPanel {
 	private JButton btnHome;
-	private JButton btnMostrarCiclos;
 	private JScrollPane scrollPane;
 	private JList<PojoCiclo> JLMostrarCiclos;
 	private JButton btnEliminarCiclo;
@@ -43,10 +42,6 @@ public class VMostrarCiclos extends JPanel {
 		btnHome.setBounds(511, 27, 54, 55);
 		add(btnHome);
 		
-		btnMostrarCiclos = new JButton("Mostrar Ciclos");
-		btnMostrarCiclos.setBounds(180, 139, 219, 47);
-		add(btnMostrarCiclos);
-		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(52, 208, 499, 235);
 		add(scrollPane);
@@ -66,18 +61,19 @@ public class VMostrarCiclos extends JPanel {
 	public JButton getBtnHome() {
 		return btnHome;
 	}
-	public JButton getBtnMostrarCiclos() {
-		return btnMostrarCiclos;
-	}
 	
 	public JButton getBtnEliminarCiclo() {
 		return btnEliminarCiclo;
 	}
 
+	public JButton getBtnModificarCiclo() {
+		return btnModificarCiclo;
+	}
+
 	public void setControlador(controlador c) {
 		btnHome.addActionListener(c);
-		btnMostrarCiclos.addActionListener(c);
 		btnEliminarCiclo.addActionListener(c);
+		btnModificarCiclo.addActionListener(c);
 	}
 
 	public JList<PojoCiclo> getJLMostrarCiclos() {

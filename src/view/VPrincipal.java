@@ -43,7 +43,7 @@ public class VPrincipal extends JFrame {
 	private JLabel lblSergioNavarro;
 	private JMenu mnCiclos;
 	private JMenuItem mntmAadirCiclos;
-	private JMenuItem mntmConsultarCiclos;
+	private JMenuItem mntmGestionarCiclos;
 
 	public VPrincipal(String titulo) throws HeadlessException {
 		super(titulo);
@@ -160,8 +160,8 @@ public class VPrincipal extends JFrame {
 		mntmAadirCiclos = new JMenuItem("Añadir Ciclos");
 		mnCiclos.add(mntmAadirCiclos);
 		
-		mntmConsultarCiclos = new JMenuItem("Gestionar Ciclos");
-		mnCiclos.add(mntmConsultarCiclos);
+		mntmGestionarCiclos = new JMenuItem("Gestionar Ciclos");
+		mnCiclos.add(mntmGestionarCiclos);
 	}
 	
 	public void setPanel(JPanel panel) {
@@ -175,7 +175,7 @@ public class VPrincipal extends JFrame {
 		mntmAadirAlumnos.addActionListener(c);
 		mntmGestionarAlumnos.addActionListener(c);
 		mntmAadirCiclos.addActionListener(c);
-		mntmConsultarCiclos.addActionListener(c);
+		mntmGestionarCiclos.addActionListener(c);
 		
 	}
 
@@ -211,7 +211,9 @@ public class VPrincipal extends JFrame {
 		return mntmAadirCiclos;
 	}
 
-	public JMenuItem getMntmConsultarCiclos() {
-		return mntmConsultarCiclos;
+	public JMenuItem getMntmGestionarCiclos() {
+		return mntmGestionarCiclos;
 	}
+	
+	
 }

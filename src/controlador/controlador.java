@@ -11,6 +11,7 @@ import view.AltaProyectos;
 import view.VConsultarAlumnos;
 import view.VInsertarCiclos;
 import view.VModificarAlumnos;
+import view.VModificarCiclo;
 import view.VMostrarCiclos;
 import view.VRegistroAlumnos;
 import view.VPrincipal;
@@ -27,9 +28,10 @@ public class controlador implements ActionListener {
 	private VMostrarCiclos mostrarCiclos;
 	private PersistenciaCiclos persCiclos;
 	private VModificarAlumnos modAlum;
+	private VModificarCiclo modCiclo;
 
 	public controlador(VPrincipal principal, AltaProyectos altaProject, VRegistroAlumnos altaAlum, VConsultarAlumnos consultAlum, 
-			VInsertarCiclos insertCiclos, VMostrarCiclos mostrarCiclos, VModificarAlumnos modAlum) {
+			VInsertarCiclos insertCiclos, VMostrarCiclos mostrarCiclos, VModificarAlumnos modAlum, VModificarCiclo modCiclo) {
 		this.principal = principal;
 		this.altaProject = altaProject;
 		this.altaAlum = altaAlum;
@@ -37,6 +39,7 @@ public class controlador implements ActionListener {
 		this.insertCiclos = insertCiclos;
 		this.mostrarCiclos = mostrarCiclos;
 		this.modAlum = modAlum;
+		this.modCiclo = modCiclo;
 	}
 
 	public void setAltaProject(AltaProyectos altaProject) {
@@ -71,6 +74,10 @@ public class controlador implements ActionListener {
 		this.modAlum = modAlum;
 	}
 
+	public void setModCiclo(VModificarCiclo modCiclo) {
+		this.modCiclo = modCiclo;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		if (e.getSource().equals(principal.getMntmAlta())) {
@@ -98,20 +105,15 @@ public class controlador implements ActionListener {
 		} else if (e.getSource().equals(principal.getMntmAadirCiclos())) {
 			principal.setPanel(insertCiclos);
 			
-		} else if (e.getSource().equals(principal.getMntmConsultarCiclos())) {
+		} else if (e.getSource().equals(principal.getMntmGestionarCiclos())) {
 			principal.setPanel(mostrarCiclos);
+			mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
 			
 		} else if (e.getSource().equals(insertCiclos.getBtnAgregarCiclo())) {
 			persCiclos.insertarCiclos(insertCiclos.recogerDatosCiclo());
 			
 		} else if (e.getSource().equals(insertCiclos.getBtnHome())) {
 			principal.setPanel(principal.getPanel1());
-			
-		} else if (e.getSource().equals(principal.getMntmConsultarCiclos())) {
-			principal.setPanel(mostrarCiclos);
-			
-		} else if (e.getSource().equals(mostrarCiclos.getBtnMostrarCiclos())) {
-			mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
 			
 		} else if (e.getSource().equals(consultAlum.getBtnEliminarAlumno())) {
 			persAlumnos.eliminarAlumnos(consultAlum.recogerDatos());
@@ -127,6 +129,13 @@ public class controlador implements ActionListener {
 		} else if (e.getSource().equals(mostrarCiclos.getBtnEliminarCiclo())) {
 			persCiclos.eliminarCiclos(mostrarCiclos.recogerDatos());
 			mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
+			
+		} else if (e.getSource().equals(mostrarCiclos.getBtnModificarCiclo())) {
+			principal.setPanel(modCiclo);
+			modCiclo.blabla(mostrarCiclos.recogerDatos());
+			
+		} else if (e.getSource().equals(modCiclo.getBtnModificarCiclo())) {
+			persCiclos.actualizarDatos(modCiclo.recogerDatosMod());
 		}
 		
 	}

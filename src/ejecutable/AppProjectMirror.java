@@ -8,6 +8,7 @@ import view.AltaProyectos;
 import view.VConsultarAlumnos;
 import view.VInsertarCiclos;
 import view.VModificarAlumnos;
+import view.VModificarCiclo;
 import view.VMostrarCiclos;
 import view.VPrincipal;
 import view.VRegistroAlumnos;
@@ -23,19 +24,21 @@ public class AppProjectMirror {
 				VConsultarAlumnos cA = new VConsultarAlumnos();
 				PersistenciaAlumnos iA = new PersistenciaAlumnos();
 				VInsertarCiclos iC = new VInsertarCiclos();
-				VMostrarCiclos mC = new VMostrarCiclos();
+				VMostrarCiclos gC = new VMostrarCiclos();
 				PersistenciaCiclos pC = new PersistenciaCiclos();
 				VModificarAlumnos mA = new VModificarAlumnos();
+				VModificarCiclo mC = new VModificarCiclo();
 				
-				controlador cont = new controlador(vPpal, aP, rA, cA, iC, mC, mA);
+				controlador cont = new controlador(vPpal, aP, rA, cA, iC, gC, mA, mC);
 				cont.setAltaAlum(rA);
 				cont.setAltaProject(aP);
 				cont.setConsultAlum(cA);
 				cont.setPersAlumnos(iA);
 				cont.setInsertCiclos(iC);
-				cont.setMostrarCiclos(mC);
+				cont.setMostrarCiclos(gC);
 				cont.setPersCiclos(pC);
 				cont.setModAlum(mA);
+				cont.setModCiclo(mC);
 				
 				
 				vPpal.setControlador(cont);
@@ -43,8 +46,9 @@ public class AppProjectMirror {
 				rA.setControlador(cont);
 				cA.setControlador(cont);
 				iC.setControlador(cont);
-				mC.setControlador(cont);
+				gC.setControlador(cont);
 				mA.setControlador(cont);
+				mC.setControlador(cont);
 				
 				vPpal.setVisible(true);
 			}
