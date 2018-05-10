@@ -5,6 +5,7 @@ import controlador.controlador;
 import persistencia.PersistenciaAlumnos;
 import persistencia.PersistenciaCiclos;
 import view.AltaProyectos;
+import view.VAltaProyecto;
 import view.VConsultarAlumnos;
 import view.VInsertarCiclos;
 import view.VModificarAlumnos;
@@ -19,7 +20,7 @@ public class AppProjectMirror {
 		EventQueue.invokeLater(new Runnable(){
 			public void run() {
 				VPrincipal vPpal = new VPrincipal("Ventana Principal");
-				AltaProyectos aP = new AltaProyectos();
+				VAltaProyecto aP = new VAltaProyecto();
 				VRegistroAlumnos rA = new VRegistroAlumnos();
 				VConsultarAlumnos cA = new VConsultarAlumnos();
 				PersistenciaAlumnos iA = new PersistenciaAlumnos();

@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import persistencia.PersistenciaAlumnos;
 import persistencia.PersistenciaCiclos;
 import view.AltaProyectos;
+import view.VAltaProyecto;
 import view.VConsultarAlumnos;
 import view.VInsertarCiclos;
 import view.VModificarAlumnos;
@@ -19,7 +20,7 @@ import view.VPrincipal;
 public class controlador implements ActionListener {
 	
 	private VPrincipal principal;
-	private AltaProyectos altaProject;
+	private VAltaProyecto altaProject;
 	private VRegistroAlumnos altaAlum;
 	private VConsultarAlumnos consultAlum;
 
@@ -30,7 +31,7 @@ public class controlador implements ActionListener {
 	private VModificarAlumnos modAlum;
 	private VModificarCiclo modCiclo;
 
-	public controlador(VPrincipal principal, AltaProyectos altaProject, VRegistroAlumnos altaAlum, VConsultarAlumnos consultAlum, 
+	public controlador(VPrincipal principal, VAltaProyecto altaProject, VRegistroAlumnos altaAlum, VConsultarAlumnos consultAlum, 
 			VInsertarCiclos insertCiclos, VMostrarCiclos mostrarCiclos, VModificarAlumnos modAlum, VModificarCiclo modCiclo) {
 		this.principal = principal;
 		this.altaProject = altaProject;
@@ -42,7 +43,7 @@ public class controlador implements ActionListener {
 		this.modCiclo = modCiclo;
 	}
 
-	public void setAltaProject(AltaProyectos altaProject) {
+	public void setAltaProject(VAltaProyecto altaProject) {
 		this.altaProject = altaProject;
 	}
 
@@ -81,7 +82,8 @@ public class controlador implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		if (e.getSource().equals(principal.getMntmAlta())) {
-			principal.setPanel(altaProject);
+			//principal.setPanel(altaProject);
+			altaProject.setVisible(true);
 			
 		} else if (e.getSource().equals(principal.getMntmAadirAlumnos())) {
 			principal.setPanel(altaAlum);
@@ -90,8 +92,8 @@ public class controlador implements ActionListener {
 			principal.setPanel(consultAlum);
 			consultAlum.getJListAlum().setModel(persAlumnos.mostrarAlumnos());
 			
-		} else if (e.getSource().equals(altaProject.getBtnHome())) {
-			principal.setPanel(principal.getPanel1());
+		/*} else if (e.getSource().equals(altaProject.getBtnHome())) {
+			principal.setPanel(principal.getPanel1());*/
 			
 		} else if (e.getSource().equals(altaAlum.getBtnGuardarAlumno())) {
 			persAlumnos.insertarAlumnos(altaAlum.recogerDatos());
