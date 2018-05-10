@@ -15,11 +15,12 @@ import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.Dimension;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 
 public class VAltaProyecto extends JDialog {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField txtNombre;
+	private JTextField txtURL;
 	private JButton btnHome;
 	
 	public VAltaProyecto() {
@@ -50,10 +51,10 @@ public class VAltaProyecto extends JDialog {
 		label_1.setBounds(42, 125, 207, 17);
 		getContentPane().add(label_1);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(247, 124, 279, 20);
-		getContentPane().add(textField);
+		txtNombre = new JTextField();
+		txtNombre.setColumns(10);
+		txtNombre.setBounds(247, 124, 279, 20);
+		getContentPane().add(txtNombre);
 		
 		JLabel label_2 = new JLabel("GRUPO:");
 		label_2.setForeground(Color.WHITE);
@@ -61,10 +62,10 @@ public class VAltaProyecto extends JDialog {
 		label_2.setBounds(42, 185, 67, 19);
 		getContentPane().add(label_2);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"M11", "M12", "T11", "T12"}));
-		comboBox.setBounds(117, 186, 86, 20);
-		getContentPane().add(comboBox);
+		JComboBox cbGrupo = new JComboBox();
+		cbGrupo.setModel(new DefaultComboBoxModel(new String[] {"M11", "M12", "T11", "T12"}));
+		cbGrupo.setBounds(117, 186, 86, 20);
+		getContentPane().add(cbGrupo);
 		
 		JLabel label_3 = new JLabel("AÑO:");
 		label_3.setForeground(Color.WHITE);
@@ -72,21 +73,16 @@ public class VAltaProyecto extends JDialog {
 		label_3.setBounds(259, 185, 43, 19);
 		getContentPane().add(label_3);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(322, 184, 86, 20);
-		getContentPane().add(textField_1);
-		
 		JLabel label_4 = new JLabel("CURSO:");
 		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("Dialog", Font.BOLD, 15));
 		label_4.setBounds(42, 246, 65, 19);
 		getContentPane().add(label_4);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"1º", "2º", "3º", "4º", "5º"}));
-		comboBox_1.setBounds(117, 247, 86, 20);
-		getContentPane().add(comboBox_1);
+		JComboBox cbCurso = new JComboBox();
+		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1º", "2º", "3º", "4º", "5º"}));
+		cbCurso.setBounds(117, 247, 86, 20);
+		getContentPane().add(cbCurso);
 		
 		JLabel label_5 = new JLabel("NOTA:");
 		label_5.setForeground(Color.WHITE);
@@ -94,14 +90,14 @@ public class VAltaProyecto extends JDialog {
 		label_5.setBounds(262, 246, 54, 19);
 		getContentPane().add(label_5);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
-		comboBox_2.setBounds(336, 247, 86, 20);
-		getContentPane().add(comboBox_2);
+		JComboBox cbNota = new JComboBox();
+		cbNota.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+		cbNota.setBounds(336, 247, 86, 20);
+		getContentPane().add(cbNota);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(117, 307, 329, 20);
-		getContentPane().add(comboBox_3);
+		JComboBox cbCiclo = new JComboBox();
+		cbCiclo.setBounds(117, 307, 329, 20);
+		getContentPane().add(cbCiclo);
 		
 		JLabel label_6 = new JLabel("CICLO:");
 		label_6.setForeground(Color.WHITE);
@@ -115,20 +111,29 @@ public class VAltaProyecto extends JDialog {
 		label_7.setBounds(35, 372, 105, 19);
 		getContentPane().add(label_7);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(174, 373, 339, 20);
-		getContentPane().add(textField_2);
+		txtURL = new JTextField();
+		txtURL.setColumns(10);
+		txtURL.setBounds(174, 373, 339, 20);
+		getContentPane().add(txtURL);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(577, 108, 365, 395);
-		getContentPane().add(scrollPane);
+		JScrollPane spAlumnos = new JScrollPane();
+		spAlumnos.setBounds(577, 108, 365, 395);
+		getContentPane().add(spAlumnos);
 		
 		JLabel lblSeleccionaLosAlumnos = new JLabel("Selecciona los alumnos que desee añadir:");
 		lblSeleccionaLosAlumnos.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblSeleccionaLosAlumnos.setForeground(Color.WHITE);
 		lblSeleccionaLosAlumnos.setBounds(577, 74, 339, 20);
 		getContentPane().add(lblSeleccionaLosAlumnos);
+		
+		JSpinner jsAnyo = new JSpinner();
+		jsAnyo.setModel(new SpinnerNumberModel(2018, 1900, 2018, 1));
+		jsAnyo.setBounds(336, 186, 86, 20);
+		getContentPane().add(jsAnyo);
+		
+		JButton btnCrearProyecto = new JButton("Crear Proyecto");
+		btnCrearProyecto.setBounds(155, 435, 218, 48);
+		getContentPane().add(btnCrearProyecto);
 		
 		
 	}
