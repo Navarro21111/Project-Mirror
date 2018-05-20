@@ -1,6 +1,7 @@
 package model;
 
 public class PojoProyecto {
+	private int id;
 	private String nombre;
 	private String grupo;
 	private int anyo;
@@ -10,7 +11,17 @@ public class PojoProyecto {
 	private String url;
 	
 	public PojoProyecto(String nombre, String grupo, int anyo, String curso, int nota, String ciclo, String url) {
-		super();
+		this.nombre = nombre;
+		this.grupo = grupo;
+		this.anyo = anyo;
+		this.curso = curso;
+		this.nota = nota;
+		this.ciclo = ciclo;
+		this.url = url;
+	}
+	
+	public PojoProyecto(int id, String nombre, String grupo, int anyo, String curso, int nota, String ciclo, String url) {
+		this.id = id;
 		this.nombre = nombre;
 		this.grupo = grupo;
 		this.anyo = anyo;
@@ -47,5 +58,15 @@ public class PojoProyecto {
 	public String getUrl() {
 		return url;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Nombre: " + nombre + " , Nota: " + nota;
+	}
+	
 	
 }

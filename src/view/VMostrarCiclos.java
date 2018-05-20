@@ -14,6 +14,8 @@ import model.PojoCiclo;
 import javax.swing.ImageIcon;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VMostrarCiclos extends JPanel {
 	private JButton btnHome;
@@ -22,6 +24,7 @@ public class VMostrarCiclos extends JPanel {
 	private JButton btnEliminarCiclo;
 	private String nombre;
 	private String descripcion;
+	private int id;
 	private JButton btnModificarCiclo;
 	
 	public VMostrarCiclos() {
@@ -47,9 +50,16 @@ public class VMostrarCiclos extends JPanel {
 		add(scrollPane);
 		
 		JLMostrarCiclos = new JList();
+		JLMostrarCiclos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				btnEliminarCiclo.setEnabled(true);
+			}
+		});
 		scrollPane.setViewportView(JLMostrarCiclos);
 		
 		btnEliminarCiclo = new JButton("Eliminar Ciclo");
+		btnEliminarCiclo.setEnabled(false);
 		btnEliminarCiclo.setBounds(71, 485, 188, 38);
 		add(btnEliminarCiclo);
 		
@@ -80,12 +90,12 @@ public class VMostrarCiclos extends JPanel {
 		return JLMostrarCiclos;
 	}
 	
-	public PojoCiclo recogerDatos() {
+	public PojoCiclo recogerDatos() throws NullPointerException {
 		nombre = JLMostrarCiclos.getSelectedValue().getNombre();
 		descripcion = JLMostrarCiclos.getSelectedValue().getDescripcion();
+		id = JLMostrarCiclos.getSelectedValue().getId();
 		
-		
-		PojoCiclo datos = new PojoCiclo(nombre, descripcion);
+		PojoCiclo datos = new PojoCiclo(id, nombre, descripcion);
 		
 		return datos;
 	}

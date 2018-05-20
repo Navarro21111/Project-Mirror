@@ -6,8 +6,17 @@ public class PojoAlumno {
 	private String nombre;//es el nombre del alumno
 	private String apellido1;//es el primer apellido
 	private String apellido2;//es el segundo apellido
+	private int id;
 	
 	public PojoAlumno(int nExp, String nombre, String apellido1, String apellido2) {
+		this.nExp = nExp;
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+	}
+	
+	public PojoAlumno(int id, int nExp, String nombre, String apellido1, String apellido2) {
+		this.id = id;
 		this.nExp = nExp;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -28,6 +37,10 @@ public class PojoAlumno {
 	
 	public String getApellido2() {
 		return apellido2;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	@Override

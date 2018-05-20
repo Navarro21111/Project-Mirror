@@ -4,12 +4,14 @@ import java.awt.EventQueue;
 import controlador.controlador;
 import persistencia.PersistenciaAlumnos;
 import persistencia.PersistenciaCiclos;
-import view.AltaProyectos;
+import persistencia.PersistenciaProyectos;
 import view.VAltaProyecto;
 import view.VConsultarAlumnos;
+import view.VGestionarProyectos;
 import view.VInsertarCiclos;
 import view.VModificarAlumnos;
-import view.VModificarCiclo;
+import view.VModificarCiclos;
+import view.VModificarProyectos;
 import view.VMostrarCiclos;
 import view.VPrincipal;
 import view.VRegistroAlumnos;
@@ -28,9 +30,12 @@ public class AppProjectMirror {
 				VMostrarCiclos gC = new VMostrarCiclos();
 				PersistenciaCiclos pC = new PersistenciaCiclos();
 				VModificarAlumnos mA = new VModificarAlumnos();
-				VModificarCiclo mC = new VModificarCiclo();
+				VModificarCiclos mC = new VModificarCiclos();
+				PersistenciaProyectos pP = new PersistenciaProyectos();
+				VGestionarProyectos gP = new VGestionarProyectos();
+				VModificarProyectos mP = new VModificarProyectos();
 				
-				controlador cont = new controlador(vPpal, aP, rA, cA, iC, gC, mA, mC);
+				controlador cont = new controlador(vPpal, aP, rA, cA, iC, gC, mA, mC, pP, gP, mP);
 				cont.setAltaAlum(rA);
 				cont.setAltaProject(aP);
 				cont.setConsultAlum(cA);
@@ -40,7 +45,9 @@ public class AppProjectMirror {
 				cont.setPersCiclos(pC);
 				cont.setModAlum(mA);
 				cont.setModCiclo(mC);
-				
+				cont.setPersProy(pP);
+				cont.setGestProj(gP);
+				cont.setModProj(mP);
 				
 				vPpal.setControlador(cont);
 				aP.setControlador(cont);
@@ -50,6 +57,8 @@ public class AppProjectMirror {
 				gC.setControlador(cont);
 				mA.setControlador(cont);
 				mC.setControlador(cont);
+				gP.setControlador(cont);
+				mP.setControlador(cont);
 				
 				vPpal.setVisible(true);
 			}

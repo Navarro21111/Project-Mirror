@@ -26,6 +26,7 @@ public class VConsultarAlumnos extends JPanel {
 	private String nombre;
 	private String primApe;
 	private String segApe;
+	private int id;
 	
 	public VConsultarAlumnos() {
 		setBackground(new Color(44, 40, 41));
@@ -51,6 +52,8 @@ public class VConsultarAlumnos extends JPanel {
 		add(scrollPane);
 		
 		JListAlum = new JList();
+		JListAlum.setForeground(Color.BLACK);
+		JListAlum.setBackground(Color.WHITE);
 		scrollPane.setViewportView(JListAlum);
 		
 		btnEliminarAlumno = new JButton("Eliminar Alumno");
@@ -85,13 +88,14 @@ public class VConsultarAlumnos extends JPanel {
 		return JListAlum;
 	}
 	
-	public PojoAlumno recogerDatos() {
+	public PojoAlumno recogerDatos() throws NullPointerException {
+		id = JListAlum.getSelectedValue().getId();
 		expediente = JListAlum.getSelectedValue().getnExp();
 		nombre = JListAlum.getSelectedValue().getNombre();
 		primApe = JListAlum.getSelectedValue().getApellido1();
 		segApe = JListAlum.getSelectedValue().getApellido2();
 		
-		PojoAlumno datos = new PojoAlumno(expediente, nombre, primApe, segApe);
+		PojoAlumno datos = new PojoAlumno(id, expediente, nombre, primApe, segApe);
 		
 		return datos;
 	}

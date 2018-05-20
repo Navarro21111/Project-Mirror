@@ -5,11 +5,17 @@ import javax.swing.JButton;
 import javax.swing.border.LineBorder;
 
 import controlador.controlador;
+import model.PojoCiclo;
+import model.PojoProyecto;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
@@ -17,11 +23,28 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Dimension;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.JList;
+import model.PojoAlumno;
 
 public class VAltaProyecto extends JDialog {
 	private JTextField txtNombre;
-	private JTextField txtURL;
 	private JButton btnHome;
+	private String nombre;
+	private String grupo;
+	private int anyo;
+	private String curso;
+	private int nota;
+	private String ciclo;
+	private String URL;
+	private JComboBox cbGrupo;
+	private JSpinner jsAnyo;
+	private JComboBox cbCurso;
+	private JComboBox cbNota;
+	private JComboBox <String> cbCiclo;
+	private JTextField txtURL;
+	private JList<PojoAlumno> JListAlum;	
+	private ArrayList<PojoAlumno> alumni;
+	private JButton btnCrearProyecto;
 	
 	public VAltaProyecto() {
 		setAutoRequestFocus(false);
@@ -30,7 +53,7 @@ public class VAltaProyecto extends JDialog {
 		getContentPane().setBackground(new Color(44, 40, 41));
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
-		setBounds(0, 0, 963, 577);
+		setBounds(0, 0, 964, 578);
 		
 		btnHome = new JButton("");
 		btnHome.setIcon(new ImageIcon(VAltaProyecto.class.getResource("/images/Casitahome1.png")));
@@ -62,7 +85,7 @@ public class VAltaProyecto extends JDialog {
 		label_2.setBounds(42, 185, 67, 19);
 		getContentPane().add(label_2);
 		
-		JComboBox cbGrupo = new JComboBox();
+		cbGrupo = new JComboBox();
 		cbGrupo.setModel(new DefaultComboBoxModel(new String[] {"M11", "M12", "T11", "T12"}));
 		cbGrupo.setBounds(117, 186, 86, 20);
 		getContentPane().add(cbGrupo);
@@ -79,7 +102,7 @@ public class VAltaProyecto extends JDialog {
 		label_4.setBounds(42, 246, 65, 19);
 		getContentPane().add(label_4);
 		
-		JComboBox cbCurso = new JComboBox();
+		cbCurso = new JComboBox();
 		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1º", "2º", "3º", "4º", "5º"}));
 		cbCurso.setBounds(117, 247, 86, 20);
 		getContentPane().add(cbCurso);
@@ -90,12 +113,12 @@ public class VAltaProyecto extends JDialog {
 		label_5.setBounds(262, 246, 54, 19);
 		getContentPane().add(label_5);
 		
-		JComboBox cbNota = new JComboBox();
+		cbNota = new JComboBox();
 		cbNota.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
 		cbNota.setBounds(336, 247, 86, 20);
 		getContentPane().add(cbNota);
 		
-		JComboBox cbCiclo = new JComboBox();
+		cbCiclo = new JComboBox();
 		cbCiclo.setBounds(117, 307, 329, 20);
 		getContentPane().add(cbCiclo);
 		
@@ -120,18 +143,21 @@ public class VAltaProyecto extends JDialog {
 		spAlumnos.setBounds(577, 108, 365, 395);
 		getContentPane().add(spAlumnos);
 		
+		JListAlum = new JList();
+		spAlumnos.setViewportView(JListAlum);
+		
 		JLabel lblSeleccionaLosAlumnos = new JLabel("Selecciona los alumnos que desee añadir:");
 		lblSeleccionaLosAlumnos.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblSeleccionaLosAlumnos.setForeground(Color.WHITE);
 		lblSeleccionaLosAlumnos.setBounds(577, 74, 339, 20);
 		getContentPane().add(lblSeleccionaLosAlumnos);
 		
-		JSpinner jsAnyo = new JSpinner();
+		jsAnyo = new JSpinner();
 		jsAnyo.setModel(new SpinnerNumberModel(2018, 1900, 2018, 1));
 		jsAnyo.setBounds(336, 186, 86, 20);
 		getContentPane().add(jsAnyo);
 		
-		JButton btnCrearProyecto = new JButton("Crear Proyecto");
+		btnCrearProyecto = new JButton("Crear Proyecto");
 		btnCrearProyecto.setBounds(155, 435, 218, 48);
 		getContentPane().add(btnCrearProyecto);
 		
@@ -140,5 +166,54 @@ public class VAltaProyecto extends JDialog {
 	
 	public void setControlador(controlador c) {
 		btnHome.addActionListener(c);
+		btnCrearProyecto.addActionListener(c);
+		
+	}
+	
+	public void recogerDatos() {
+		nombre = txtNombre.getText();
+		grupo = (String) cbGrupo.getItemAt(cbGrupo.getSelectedIndex());
+		
+	}
+	
+	public void aadirComboBox(ArrayList<String> ciclos) {
+		cbCiclo.removeAllItems();
+		
+		for (int i = 0; i < ciclos.size(); i++) {
+			cbCiclo.addItem(ciclos.get(i));
+		}
+	}
+
+	public JList<PojoAlumno> getJListAlum() {
+		return JListAlum;
+	}
+	
+	public PojoProyecto recogerDatosProyecto() {
+		nombre = txtNombre.getText();
+		grupo = (String) cbGrupo.getItemAt(cbGrupo.getSelectedIndex());
+		curso = (String) cbCurso.getItemAt(cbCurso.getSelectedIndex());
+		nota = Integer.parseInt((String) cbNota.getItemAt(cbNota.getSelectedIndex()));
+		anyo = (int) jsAnyo.getValue();
+		URL = txtURL.getText();
+		ciclo = (String) cbCiclo.getItemAt(cbCiclo.getSelectedIndex());
+		
+		PojoProyecto datosProject = new PojoProyecto(nombre, grupo, anyo, curso, nota, ciclo, URL);
+		
+		return datosProject;
+	}
+	
+	public ArrayList<PojoAlumno> recogerAlumnosProyecto() {
+		alumni = new ArrayList<>();
+		List<PojoAlumno> seleccionado = JListAlum.getSelectedValuesList();
+		
+		for (int i = 0; i < seleccionado.size(); i++) {
+			alumni.add((PojoAlumno) seleccionado.get(i));
+		}
+		
+		return alumni;
+	}
+
+	public JButton getBtnCrearProyecto() {
+		return btnCrearProyecto;
 	}
 }

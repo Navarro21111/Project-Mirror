@@ -14,14 +14,16 @@ import model.PojoCiclo;
 
 import javax.swing.ImageIcon;
 
-public class VModificarCiclo extends JPanel {
+import javax.swing.JPanel;
+
+public class VModificarCiclos extends JPanel {
 	private JTextField txtNombre;
 	private JTextField txtDescripcion;
 	private JButton btnModificarCiclo;
 	private String nombre;
 	private String descripcion;
 	
-	public VModificarCiclo() {
+	public VModificarCiclos() {
 		setBackground(new Color(44, 40, 41));
 		setLayout(null);
 		
@@ -58,7 +60,7 @@ public class VModificarCiclo extends JPanel {
 		add(btnModificarCiclo);
 		
 		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(VModificarCiclo.class.getResource("/images/Casitahome1.png")));
+		button.setIcon(new ImageIcon(VModificarCiclos.class.getResource("/images/Casitahome1.png")));
 		button.setContentAreaFilled(false);
 		button.setBorder(new LineBorder(Color.WHITE, 2, true));
 		button.setBounds(488, 32, 54, 55);

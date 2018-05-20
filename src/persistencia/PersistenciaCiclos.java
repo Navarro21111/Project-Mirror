@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-import model.PojoAlumno;
+
 import model.PojoCiclo;
 
 
@@ -55,7 +56,7 @@ public class PersistenciaCiclos {
 			
 			while (rset.next()) {
 				
-				aux = new PojoCiclo(rset.getString("Nombre"), rset.getString("Descripcion"));
+				aux = new PojoCiclo(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Descripcion"));
 				listCiclos.addElement(aux);
 				
 			}
@@ -90,11 +91,11 @@ public class PersistenciaCiclos {
 		}
 	}
 	
-	public void actualizarDatos(PojoCiclo ciclo) {
+	public void actualizarDatos(PojoCiclo ciclo, PojoCiclo ciclo2) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String query = "UPDATE Ciclos SET Nombre = ?, Descripcion = ?";
+		String query = "UPDATE Ciclos SET Nombre = ?, Descripcion = ? WHERE ID = ?";
 		
 		try {
 			
@@ -102,11 +103,38 @@ public class PersistenciaCiclos {
 			ps = con.prepareStatement(query);
 			ps.setString(1, ciclo.getNombre());
 			ps.setString(2, ciclo.getDescripcion());
+			ps.setInt(3, ciclo2.getId());
 			ps.executeUpdate();
 			
 			JOptionPane.showMessageDialog(null, "Ciclo actualizado");
 		} catch(SQLException | ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
 		}
+	}
+	
+	public ArrayList<String> ArrayCiclos() {
+		Connection con = null;
+		ArrayList<String> ciclitos = new ArrayList<>();
+		
+		String query = "SELECT * FROM Ciclos";
+		
+		try {
+			
+			con = acces.getConexion();
+			PreparedStatement prst = con.prepareStatement(query);
+			ResultSet rset = prst.executeQuery();
+			
+			while (rset.next()) {			
+				ciclitos.add(rset.getString("Nombre"));	
+			}
+			
+			rset.close();
+			prst.close();
+			
+		} catch(SQLException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
+		}	
+		
+		return ciclitos;
 	}
 }

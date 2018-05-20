@@ -15,24 +15,16 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Color;
 import javax.swing.JMenu;
 import java.awt.Dimension;
-import javax.swing.SwingConstants;
-import java.awt.Insets;
-import java.awt.Rectangle;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import java.awt.Font;
-import javax.swing.JSeparator;
 import javax.swing.border.LineBorder;
 
 public class VPrincipal extends JFrame {
 	private JScrollPane spPanel;
-	private JMenuItem mntmConsultas;
 	private JMenuItem mntmAlta;
-	private JMenuItem mntmBaja;
-	private JMenuItem mntmModificacin;
 	private JMenuItem mntmAadirAlumnos;
 	private JMenuItem mntmGestionarAlumnos;
 	private JPanel panel_1;
@@ -44,6 +36,7 @@ public class VPrincipal extends JFrame {
 	private JMenu mnCiclos;
 	private JMenuItem mntmAadirCiclos;
 	private JMenuItem mntmGestionarCiclos;
+	private JMenuItem mntmGestionarProyectos;
 
 	public VPrincipal(String titulo) throws HeadlessException {
 		super(titulo);
@@ -132,17 +125,11 @@ public class VPrincipal extends JFrame {
 		mnProyectos.setPreferredSize(new Dimension(200, 22));
 		menuBar.add(mnProyectos);
 		
-		mntmConsultas = new JMenuItem("Consultas");
-		mnProyectos.add(mntmConsultas);
-		
 		mntmAlta = new JMenuItem("Alta");
 		mnProyectos.add(mntmAlta);
 		
-		mntmBaja = new JMenuItem("Baja");
-		mnProyectos.add(mntmBaja);
-		
-		mntmModificacin = new JMenuItem("Modificación");
-		mnProyectos.add(mntmModificacin);
+		mntmGestionarProyectos = new JMenuItem("Gestionar Proyectos");
+		mnProyectos.add(mntmGestionarProyectos);
 		
 		JMenu mnAlumnos = new JMenu("Alumnos");
 		mnAlumnos.setForeground(new Color(44, 40, 41));
@@ -170,29 +157,16 @@ public class VPrincipal extends JFrame {
 	
 	public void setControlador(controlador c) {
 		mntmAlta.addActionListener(c);
-		mntmBaja.addActionListener(c);
-		mntmConsultas.addActionListener(c);
 		mntmAadirAlumnos.addActionListener(c);
 		mntmGestionarAlumnos.addActionListener(c);
 		mntmAadirCiclos.addActionListener(c);
 		mntmGestionarCiclos.addActionListener(c);
+		mntmGestionarProyectos.addActionListener(c);
 		
-	}
-
-	public JMenuItem getMntmConsultas() {
-		return mntmConsultas;
 	}
 
 	public JMenuItem getMntmAlta() {
 		return mntmAlta;
-	}
-
-	public JMenuItem getMntmBaja() {
-		return mntmBaja;
-	}
-
-	public JMenuItem getMntmModificacin() {
-		return mntmModificacin;
 	}
 
 	public JMenuItem getMntmAadirAlumnos() {
@@ -214,6 +188,8 @@ public class VPrincipal extends JFrame {
 	public JMenuItem getMntmGestionarCiclos() {
 		return mntmGestionarCiclos;
 	}
-	
-	
+
+	public JMenuItem getMntmGestionarProyectos() {
+		return mntmGestionarProyectos;
+	}
 }
