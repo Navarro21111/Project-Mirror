@@ -33,6 +33,7 @@ public class VConsultarAlumnos extends JPanel {
 		setLayout(null);
 		
 		JLabel lblConsultarAlumnos = new JLabel("Consultar Alumnos");
+		lblConsultarAlumnos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		lblConsultarAlumnos.setForeground(Color.WHITE);
 		lblConsultarAlumnos.setFont(new Font("Dialog", Font.PLAIN, 35));
 		lblConsultarAlumnos.setBounds(72, 23, 463, 118);
@@ -63,6 +64,7 @@ public class VConsultarAlumnos extends JPanel {
 		btnModificarAlumno = new JButton("Modificar Alumno");
 		btnModificarAlumno.setBounds(346, 494, 170, 44);
 		add(btnModificarAlumno);
+		
 	}
 	
 	public void setControlador(controlador c) {

@@ -17,6 +17,8 @@ import model.PojoAlumno;
 import model.PojoProyecto;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.Cursor;
 
 public class VGestionarProyectos extends JPanel {
 	private JButton btnEliminarProyecto;
@@ -24,7 +26,7 @@ public class VGestionarProyectos extends JPanel {
 	private JButton btnModificarProyecto;
 	private JButton btnHome;
 	private JList<PojoProyecto> JListProyectos;
-	private JTextField textField;
+	private JTextField txtFiltro;
 	private String nombre;
 	private String grupo;
 	private int anyo;
@@ -33,6 +35,8 @@ public class VGestionarProyectos extends JPanel {
 	private String ciclo;
 	private String url;
 	private int id;
+	private JComboBox<String> cbFiltro;
+	private JButton btnFiltrar;
 	
 	public VGestionarProyectos() {
 		setBackground(new Color(44, 40, 41));
@@ -45,6 +49,7 @@ public class VGestionarProyectos extends JPanel {
 		add(lblGestionarProyectos);
 		
 		btnHome = new JButton("");
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHome.setIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/Casitahome1.png")));
 		btnHome.setContentAreaFilled(false);
 		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
@@ -70,18 +75,19 @@ public class VGestionarProyectos extends JPanel {
 		btnAmpliarInformacin.setBounds(215, 483, 168, 41);
 		add(btnAmpliarInformacin);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(44, 65, 150, 27);
-		add(comboBox);
+		cbFiltro = new JComboBox<String>();
+		cbFiltro.setModel(new DefaultComboBoxModel<String>(new String[] {"Todos", "Nombre", "Ciclo", "Año", "Nota", "Grupo"}));
+		cbFiltro.setBounds(44, 65, 150, 27);
+		add(cbFiltro);
 		
-		textField = new JTextField();
-		textField.setBounds(337, 65, 204, 26);
-		add(textField);
-		textField.setColumns(10);
+		txtFiltro = new JTextField();
+		txtFiltro.setBounds(337, 65, 204, 26);
+		add(txtFiltro);
+		txtFiltro.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Filtrar Proyectos");
-		btnNewButton.setBounds(184, 104, 168, 41);
-		add(btnNewButton);
+		btnFiltrar = new JButton("Filtrar Proyectos");
+		btnFiltrar.setBounds(184, 104, 168, 41);
+		add(btnFiltrar);
 		
 		JLabel lblTextoParaFiltrar = new JLabel("Texto para filtrar:");
 		lblTextoParaFiltrar.setFont(new Font("Dialog", Font.PLAIN, 13));
@@ -90,7 +96,7 @@ public class VGestionarProyectos extends JPanel {
 		add(lblTextoParaFiltrar);
 	}
 	
-	public PojoProyecto recogerDatos() {
+	public PojoProyecto recogerDatos() throws NullPointerException {
 		id = JListProyectos.getSelectedValue().getId();
 		nombre = JListProyectos.getSelectedValue().getNombre();
 		grupo = JListProyectos.getSelectedValue().getGrupo();
@@ -109,7 +115,8 @@ public class VGestionarProyectos extends JPanel {
 		btnAmpliarInformacin.addActionListener(c);
 		btnEliminarProyecto.addActionListener(c);
 		btnModificarProyecto.addActionListener(c);
-		btnHome.addActionListener(c);	
+		btnHome.addActionListener(c);
+		btnFiltrar.addActionListener(c);
 	}
 	
 	public JButton getBtnEliminarProyecto() {
@@ -129,6 +136,34 @@ public class VGestionarProyectos extends JPanel {
 	public JList<PojoProyecto> getJListProyectos() {
 		return JListProyectos;
 	}
+
+	public JTextField getTxtFiltro() {
+		return txtFiltro;
+	}
+
+	public JComboBox<String> getCbFiltro() {
+		return cbFiltro;
+	}
+
+	public JButton getBtnFiltrar() {
+		return btnFiltrar;
+	}
 	
+	public String recogerComboBox() {
+		String seleccionado;
+		
+		seleccionado = cbFiltro.getSelectedItem().toString();
+		
+		return seleccionado;
+		
+	}
 	
+	public String recogerTxtFiltro() {
+		String escrito;
+		
+		escrito = txtFiltro.getText();
+		
+		return escrito;
+		
+	}
 }

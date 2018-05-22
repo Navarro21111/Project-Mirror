@@ -22,6 +22,7 @@ import javax.swing.border.LineBorder;
 import controlador.controlador;
 import model.PojoAlumno;
 import model.PojoProyecto;
+import java.awt.Cursor;
 
 public class VModificarProyectos extends JDialog {
 	private JTextField txtNombre;
@@ -186,13 +187,14 @@ public class VModificarProyectos extends JDialog {
 		getContentPane().add(btnAadirAlumnosAl);
 		
 		btnHome = new JButton("");
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHome.setIcon(new ImageIcon(VModificarProyectos.class.getResource("/images/Casitahome1.png")));
 		btnHome.setContentAreaFilled(false);
 		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
 		btnHome.setBounds(1050, 4, 54, 55);
 		getContentPane().add(btnHome);
 		
-		
+		setLocationRelativeTo(null);
 	}
 	
 	public void setControlador(controlador c) {
@@ -285,6 +287,10 @@ public class VModificarProyectos extends JDialog {
 		PojoAlumno datos = new PojoAlumno(id, numExpediente, nombre, apellido1, apellido2);
 		
 		return datos;
+	}
+
+	public JButton getBtnHome() {
+		return btnHome;
 	}
 }
 

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import model.PojoAlumno;
 import model.PojoProyecto;
+import view.VGestionarProyectos;
 
 public class PersistenciaProyectos {
 	private AccesoDB acces;
@@ -99,28 +100,111 @@ public class PersistenciaProyectos {
 		}
 	}
 	
-	public DefaultListModel<PojoProyecto> mostrarProyectos() {
+	public DefaultListModel<PojoProyecto> mostrarProyectos(String seleccionado, String escrito) {
 		PojoProyecto aux;
 		Connection con = null;
 		DefaultListModel<PojoProyecto> listProject = new DefaultListModel<>();
+		String query = null;
 		
-		String query = "SELECT * FROM Proyectos";
 		
 		try {
-			
 			con = acces.getConexion();
-			PreparedStatement prst = con.prepareStatement(query);
-			ResultSet rset = prst.executeQuery();
 			
-			while (rset.next()) {
-				aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
-						rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
-				listProject.addElement(aux);
+			if (seleccionado == "Todos") {
+				query = "SELECT * FROM Proyectos";
+				PreparedStatement prst = con.prepareStatement(query);
+				ResultSet rset = prst.executeQuery();
+				
+				while (rset.next()) {
+					aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
+							rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
+					listProject.addElement(aux);
 
+				}
+				
+				rset.close();
+				prst.close();
+				
+			} else if (seleccionado == "Nombre") {
+				query = "SELECT * FROM Proyectos WHERE Nombre = ?";
+				PreparedStatement prst = con.prepareStatement(query);
+				prst.setString(1, escrito);
+				ResultSet rset = prst.executeQuery();
+				
+				while (rset.next()) {
+					aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
+							rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
+					listProject.addElement(aux);
+
+				}
+				
+				rset.close();
+				prst.close();
+				
+			} else if (seleccionado == "Ciclo") {
+				query = "SELECT * FROM Proyectos WHERE Ciclo = ?";
+				PreparedStatement prst = con.prepareStatement(query);
+				prst.setString(1, escrito);
+				ResultSet rset = prst.executeQuery();
+				
+				while (rset.next()) {
+					aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
+							rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
+					listProject.addElement(aux);
+
+				}
+				
+				rset.close();
+				prst.close();
+				
+			} else if (seleccionado == "Año") {
+				query = "SELECT * FROM Proyectos WHERE Año = ?";
+				PreparedStatement prst = con.prepareStatement(query);
+				prst.setInt(1, Integer.parseInt(escrito));
+				ResultSet rset = prst.executeQuery();
+				
+				while (rset.next()) {
+					aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
+							rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
+					listProject.addElement(aux);
+
+				}
+				
+				rset.close();
+				prst.close();
+				
+			} else if (seleccionado == "Nota") {
+				query = "SELECT * FROM Proyectos WHERE Nota = ?";
+				PreparedStatement prst = con.prepareStatement(query);
+				prst.setInt(1, Integer.parseInt(escrito));
+				ResultSet rset = prst.executeQuery();
+				
+				while (rset.next()) {
+					aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
+							rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
+					listProject.addElement(aux);
+
+				}
+				
+				rset.close();
+				prst.close();
+				
+			} else if (seleccionado == "Grupo") {
+				query = "SELECT * FROM Proyectos WHERE Grupo = ?";
+				PreparedStatement prst = con.prepareStatement(query);
+				prst.setString(1, escrito);
+				ResultSet rset = prst.executeQuery();
+				
+				while (rset.next()) {
+					aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
+							rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
+					listProject.addElement(aux);
+
+				}
+				
+				rset.close();
+				prst.close();
 			}
-			
-			rset.close();
-			prst.close();
 			
 		} catch(SQLException | ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
@@ -194,7 +278,6 @@ public class PersistenciaProyectos {
 			ps.setInt(8, proyecto2.getId());
 			
 			ps.executeUpdate();
-			
 			ps.close();
 			
 			JOptionPane.showMessageDialog(null, "Proyecto actualizado");
@@ -275,5 +358,34 @@ public class PersistenciaProyectos {
 		} catch(SQLException | ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
 		}
+	}
+	
+	public DefaultListModel<PojoProyecto> mostrarProyectos() {
+		PojoProyecto aux;
+		Connection con = null;
+		DefaultListModel<PojoProyecto> listProject = new DefaultListModel<>();
+		String query = "SELECT * FROM Proyectos";
+		
+		
+		try {
+			con = acces.getConexion();
+			PreparedStatement prst = con.prepareStatement(query);
+			ResultSet rset = prst.executeQuery();
+			
+			while (rset.next()) {
+				aux = new PojoProyecto(rset.getInt("ID"), rset.getString("Nombre"), rset.getString("Grupo"), rset.getInt("Anyo"), rset.getString("Curso"), 
+						rset.getInt("Nota"), rset.getString("Ciclo"), rset.getString("URL"));
+				listProject.addElement(aux);
+
+			}
+			
+			rset.close();
+			prst.close();
+			
+		} catch(SQLException | ClassNotFoundException e) {
+			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
+		}
+		
+		return listProject;
 	}
 }

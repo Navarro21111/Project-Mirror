@@ -16,6 +16,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 public class VMostrarCiclos extends JPanel {
 	private JButton btnHome;
@@ -39,6 +40,7 @@ public class VMostrarCiclos extends JPanel {
 		add(lblMostrarCiclos);
 		
 		btnHome = new JButton("");
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHome.setIcon(new ImageIcon(VMostrarCiclos.class.getResource("/images/Casitahome1.png")));
 		btnHome.setContentAreaFilled(false);
 		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
@@ -59,7 +61,6 @@ public class VMostrarCiclos extends JPanel {
 		scrollPane.setViewportView(JLMostrarCiclos);
 		
 		btnEliminarCiclo = new JButton("Eliminar Ciclo");
-		btnEliminarCiclo.setEnabled(false);
 		btnEliminarCiclo.setBounds(71, 485, 188, 38);
 		add(btnEliminarCiclo);
 		

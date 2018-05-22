@@ -149,6 +149,8 @@ public class VPrincipal extends JFrame {
 		
 		mntmGestionarCiclos = new JMenuItem("Gestionar Ciclos");
 		mnCiclos.add(mntmGestionarCiclos);
+		
+		setLocationRelativeTo(null);
 	}
 	
 	public void setPanel(JPanel panel) {

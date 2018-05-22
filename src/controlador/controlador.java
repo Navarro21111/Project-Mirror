@@ -9,6 +9,7 @@ import persistencia.PersistenciaAlumnos;
 import persistencia.PersistenciaCiclos;
 import persistencia.PersistenciaProyectos;
 import view.VAltaProyecto;
+import view.VAmpliarInformacion;
 import view.VConsultarAlumnos;
 import view.VGestionarProyectos;
 import view.VInsertarCiclos;
@@ -34,6 +35,7 @@ public class controlador implements ActionListener {
 	private PersistenciaProyectos persProy;
 	private VGestionarProyectos gestProj;
 	private VModificarProyectos modProj;
+	private VAmpliarInformacion ampliInfor;
 
 	public controlador(VPrincipal principal, VAltaProyecto altaProject, VRegistroAlumnos altaAlum, VConsultarAlumnos consultAlum, 
 			VInsertarCiclos insertCiclos, VMostrarCiclos mostrarCiclos, VModificarAlumnos modAlum, VModificarCiclos modCiclo,
@@ -99,6 +101,10 @@ public class controlador implements ActionListener {
 		this.modProj = modProj;
 	}
 
+	public void setAmpliInfor(VAmpliarInformacion ampliInfor) {
+		this.ampliInfor = ampliInfor;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		if (e.getSource().equals(principal.getMntmAlta())) {
@@ -136,25 +142,35 @@ public class controlador implements ActionListener {
 			principal.setPanel(principal.getPanel1());
 			
 		} else if (e.getSource().equals(consultAlum.getBtnEliminarAlumno())) {
-			persAlumnos.eliminarAlumnos(consultAlum.recogerDatos());
-			consultAlum.getJListAlum().setModel(persAlumnos.mostrarAlumnos());
+			try {
+				persAlumnos.eliminarAlumnos(consultAlum.recogerDatos());
+				consultAlum.getJListAlum().setModel(persAlumnos.mostrarAlumnos());
+			} catch (NullPointerException e2) {
+				JOptionPane.showMessageDialog(consultAlum, "Se debe seleccionar un alumno");
+			}
 			
 		} else if (e.getSource().equals(modAlum.getBtnModificar())) {
 			persAlumnos.actualizarDatos(modAlum.recogerDatosMod(), consultAlum.recogerDatos());
 			
 		} else if (e.getSource().equals(consultAlum.getBtnModificarAlumno())) {
 			try {
-			modAlum.blabla(consultAlum.recogerDatos());
-			principal.setPanel(modAlum);	
+				modAlum.blabla(consultAlum.recogerDatos());
+				principal.setPanel(modAlum);	
 			
 			} catch (NullPointerException e2) {
 				JOptionPane.showMessageDialog(consultAlum, "Se debe seleccionar un alumno");
 			}
 			
 		} else if (e.getSource().equals(mostrarCiclos.getBtnEliminarCiclo())) {
-			persCiclos.eliminarCiclos(mostrarCiclos.recogerDatos());
-			mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
-			mostrarCiclos.getBtnEliminarCiclo().setEnabled(false);
+			
+			try {
+				persCiclos.eliminarCiclos(mostrarCiclos.recogerDatos());
+				mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
+				mostrarCiclos.getBtnEliminarCiclo().setEnabled(false);
+				
+			} catch (NullPointerException e2) {
+				JOptionPane.showMessageDialog(consultAlum, "Se debe seleccionar un ciclo");
+			}
 			
 		} else if (e.getSource().equals(mostrarCiclos.getBtnModificarCiclo())) {
 			try {
@@ -176,19 +192,29 @@ public class controlador implements ActionListener {
 			gestProj.getJListProyectos().setModel(persProy.mostrarProyectos());
 			
 		} else if (e.getSource().equals(gestProj.getBtnEliminarProyecto())) {
-			persProy.eliminarProyectos(gestProj.recogerDatos());
+			try {
+				persProy.eliminarProyectos(gestProj.recogerDatos());
+				
+			} catch (NullPointerException e2) {
+				JOptionPane.showMessageDialog(consultAlum, "Se debe seleccionar un Proyecto");
+			}
 			
 		} else if (e.getSource().equals(gestProj.getBtnModificarProyecto())) {
-			modProj.setVisible(true);
-			modProj.getJListAlum().setModel(persProy.AlumnosEnProyecto(gestProj.recogerDatos()));
-			modProj.getJListAlumProject().setModel(persAlumnos.mostrarAlumnosEnProyecto(persProy.AlumnosEnProyecto(gestProj.recogerDatos())));
-			modProj.blabla2(gestProj.recogerDatos());
-			modProj.aadirComboBox(persCiclos.ArrayCiclos());
+			try {
+				modProj.getJListAlum().setModel(persProy.AlumnosEnProyecto(gestProj.recogerDatos()));
+				modProj.getJListAlumProject().setModel(persAlumnos.mostrarAlumnosEnProyecto(persProy.AlumnosEnProyecto(gestProj.recogerDatos())));
+				modProj.blabla2(gestProj.recogerDatos());
+				modProj.aadirComboBox(persCiclos.ArrayCiclos());
+				modProj.setVisible(true);
+				
+			} catch (NullPointerException e2) {
+				JOptionPane.showMessageDialog(consultAlum, "Se debe seleccionar un Proyecto");
+			}
 			
 		} else if (e.getSource().equals(modProj.getBtnModificarProyecto())) {
-			persProy.actualizarDatos(modProj.recogerDatosProyecto(), gestProj.recogerDatos());
-			gestProj.getJListProyectos().setModel(persProy.mostrarProyectos());
-			
+				persProy.actualizarDatos(modProj.recogerDatosProyecto(), gestProj.recogerDatos());
+				gestProj.getJListProyectos().setModel(persProy.mostrarProyectos());
+				
 		} else if (e.getSource().equals(modProj.getBtnEliminarDelProyecto())) {
 			persProy.eliminarAlumnos(modProj.recogerAlumnoEliminar());
 			modProj.getJListAlum().setModel(persProy.AlumnosEnProyecto(gestProj.recogerDatos()));
@@ -198,7 +224,36 @@ public class controlador implements ActionListener {
 			modProj.getJListAlumProject().setModel(persAlumnos.mostrarAlumnos());
 			modProj.getJListAlum().setModel(persProy.AlumnosEnProyecto(gestProj.recogerDatos()));
 			
+		} else if (e.getSource().equals(gestProj.getBtnAmpliarInformacin())) {
+			try {
+				ampliInfor.ponerDatos(gestProj.recogerDatos());
+				ampliInfor.getJListAlum().setModel(persProy.AlumnosEnProyecto(gestProj.recogerDatos()));
+				ampliInfor.setVisible(true);
+			} catch (NullPointerException e2) {
+				JOptionPane.showMessageDialog(consultAlum, "Se debe seleccionar un Proyecto");
+			}
+			
+		} else if (e.getSource().equals(gestProj.getBtnFiltrar())) {
+			gestProj.getJListProyectos().setModel(persProy.mostrarProyectos(gestProj.recogerComboBox(), gestProj.recogerTxtFiltro()));
+			
+		} else if (e.getSource().equals(mostrarCiclos.getBtnHome())) {
+			principal.setPanel(principal.getPanel1());
+			
+		} else if (e.getSource().equals(altaProject.getBtnHome())) {
+			altaProject.setVisible(false);
+			principal.setPanel(principal.getPanel1());
+			
+		} else if (e.getSource().equals(ampliInfor.getBtnHome())) {
+			ampliInfor.setVisible(false);
+			principal.setPanel(principal.getPanel1());
+			
+		} else if (e.getSource().equals(modProj.getBtnHome())) {
+			modProj.setVisible(false);
+			principal.setPanel(principal.getPanel1());
+			
+		} else if (e.getSource().equals(gestProj.getBtnHome())) {
+			principal.setPanel(principal.getPanel1());
+			
 		}
-		
 	}
 }

@@ -25,6 +25,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JList;
 import model.PojoAlumno;
+import java.awt.Cursor;
 
 public class VAltaProyecto extends JDialog {
 	private JTextField txtNombre;
@@ -56,6 +57,7 @@ public class VAltaProyecto extends JDialog {
 		setBounds(0, 0, 964, 578);
 		
 		btnHome = new JButton("");
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHome.setIcon(new ImageIcon(VAltaProyecto.class.getResource("/images/Casitahome1.png")));
 		btnHome.setContentAreaFilled(false);
 		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
@@ -161,7 +163,7 @@ public class VAltaProyecto extends JDialog {
 		btnCrearProyecto.setBounds(155, 435, 218, 48);
 		getContentPane().add(btnCrearProyecto);
 		
-		
+		setLocationRelativeTo(null);
 	}
 	
 	public void setControlador(controlador c) {
@@ -215,5 +217,9 @@ public class VAltaProyecto extends JDialog {
 
 	public JButton getBtnCrearProyecto() {
 		return btnCrearProyecto;
+	}
+
+	public JButton getBtnHome() {
+		return btnHome;
 	}
 }

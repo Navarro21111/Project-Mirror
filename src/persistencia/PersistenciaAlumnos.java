@@ -122,7 +122,6 @@ public class PersistenciaAlumnos {
 		String query = "UPDATE Alumnos SET NumExpediente = ?, Nombre = ?, Apellido1 = ?, Apellido2 = ? WHERE numExpediente = ?";
 		
 		try {
-			
 			con = acces.getConexion();
 			ps = con.prepareStatement(query);
 			ps.setInt(1, alumno.getnExp());

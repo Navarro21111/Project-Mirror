@@ -6,6 +6,7 @@ import persistencia.PersistenciaAlumnos;
 import persistencia.PersistenciaCiclos;
 import persistencia.PersistenciaProyectos;
 import view.VAltaProyecto;
+import view.VAmpliarInformacion;
 import view.VConsultarAlumnos;
 import view.VGestionarProyectos;
 import view.VInsertarCiclos;
@@ -34,6 +35,7 @@ public class AppProjectMirror {
 				PersistenciaProyectos pP = new PersistenciaProyectos();
 				VGestionarProyectos gP = new VGestionarProyectos();
 				VModificarProyectos mP = new VModificarProyectos();
+				VAmpliarInformacion amP = new VAmpliarInformacion();
 				
 				controlador cont = new controlador(vPpal, aP, rA, cA, iC, gC, mA, mC, pP, gP, mP);
 				cont.setAltaAlum(rA);
@@ -48,6 +50,7 @@ public class AppProjectMirror {
 				cont.setPersProy(pP);
 				cont.setGestProj(gP);
 				cont.setModProj(mP);
+				cont.setAmpliInfor(amP);
 				
 				vPpal.setControlador(cont);
 				aP.setControlador(cont);
@@ -59,6 +62,7 @@ public class AppProjectMirror {
 				mC.setControlador(cont);
 				gP.setControlador(cont);
 				mP.setControlador(cont);
+				amP.setControlador(cont);
 				
 				vPpal.setVisible(true);
 			}
