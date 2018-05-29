@@ -4,18 +4,21 @@ import java.awt.EventQueue;
 import controlador.controlador;
 import persistencia.PersistenciaAlumnos;
 import persistencia.PersistenciaCiclos;
+import persistencia.PersistenciaLogin;
 import persistencia.PersistenciaProyectos;
 import view.VAltaProyecto;
 import view.VAmpliarInformacion;
 import view.VConsultarAlumnos;
 import view.VGestionarProyectos;
 import view.VInsertarCiclos;
+import view.VLogin;
 import view.VModificarAlumnos;
 import view.VModificarCiclos;
 import view.VModificarProyectos;
 import view.VMostrarCiclos;
 import view.VPrincipal;
 import view.VRegistroAlumnos;
+import view.VRegistroUsuario;
 
 public class AppProjectMirror {
 
@@ -36,8 +39,11 @@ public class AppProjectMirror {
 				VGestionarProyectos gP = new VGestionarProyectos();
 				VModificarProyectos mP = new VModificarProyectos();
 				VAmpliarInformacion amP = new VAmpliarInformacion();
+				VLogin vL = new VLogin();
+				PersistenciaLogin pL = new PersistenciaLogin();
+				VRegistroUsuario rU = new VRegistroUsuario();
 				
-				controlador cont = new controlador(vPpal, aP, rA, cA, iC, gC, mA, mC, pP, gP, mP);
+				controlador cont = new controlador(vPpal, aP, rA, cA, iC, gC, mA, mC, pP, gP, mP, vL, rU);
 				cont.setAltaAlum(rA);
 				cont.setAltaProject(aP);
 				cont.setConsultAlum(cA);
@@ -51,6 +57,10 @@ public class AppProjectMirror {
 				cont.setGestProj(gP);
 				cont.setModProj(mP);
 				cont.setAmpliInfor(amP);
+				cont.setVlog(vL);
+				cont.setPersLogin(pL);
+				cont.setRegisUsur(rU);
+				
 				
 				vPpal.setControlador(cont);
 				aP.setControlador(cont);
@@ -63,8 +73,11 @@ public class AppProjectMirror {
 				gP.setControlador(cont);
 				mP.setControlador(cont);
 				amP.setControlador(cont);
+				vL.setControlador(cont);
+				rU.setControlador(cont);
 				
-				vPpal.setVisible(true);
+				//vPpal.setVisible(true);
+				vL.setVisible(true);
 			}
 		});
 	}

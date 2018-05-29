@@ -235,9 +235,7 @@ public class PersistenciaProyectos {
 				prest.close();
 			}
 			
-			
-			query = "DELETE FROM Proyectos WHERE ID = ?";
-			con = acces.getConexion();        
+			query = "DELETE FROM Pertenecen Where Proyecto = ?";
 			prest = con.prepareStatement(query);
 			prest.setInt(1, aux);
 			prest.execute();
@@ -246,7 +244,8 @@ public class PersistenciaProyectos {
 				prest.close();
 			}
 			
-			query = "DELETE FROM Pertenecen Where Proyecto = ?";
+			query = "DELETE FROM Proyectos WHERE ID = ?";
+			con = acces.getConexion();        
 			prest = con.prepareStatement(query);
 			prest.setInt(1, aux);
 			prest.execute();
@@ -261,10 +260,29 @@ public class PersistenciaProyectos {
 	public void actualizarDatos(PojoProyecto proyecto, PojoProyecto proyecto2) {
 		Connection con = null;
 		PreparedStatement ps = null;
+		String aux3;
+		int aux2 = 0;
+		ResultSet rset = null;
 		
-		String query = "UPDATE Proyectos SET Nombre = ?, Nota = ?, Anyo = ?, Curso = ?, Grupo = ?, Ciclo = ?, URL = ? WHERE ID = ?";
+		
+		String query = "SELECT ID FROM Ciclos WHERE Nombre = ?";
 		
 		try {
+			con = acces.getConexion();
+			aux3 = proyecto.getCiclo();
+			ps = con.prepareStatement(query);
+			ps.setString(1, aux3);
+			rset = ps.executeQuery();
+			
+			while (rset.next()) {
+				aux2 = rset.getInt(1);
+			}
+			
+			if (ps != null) {
+				ps.close();
+			}
+			
+			query = "UPDATE Proyectos SET Nombre = ?, Nota = ?, Anyo = ?, Curso = ?, Grupo = ?, Ciclo = ?, URL = ? WHERE ID = ?";
 			
 			con = acces.getConexion();
 			ps = con.prepareStatement(query);
@@ -273,12 +291,11 @@ public class PersistenciaProyectos {
 			ps.setInt(3, proyecto.getAnyo());
 			ps.setString(4, proyecto.getCurso());
 			ps.setString(5, proyecto.getGrupo());
-			ps.setString(6, proyecto.getCiclo());
+			ps.setInt(6, aux2);
 			ps.setString(7, proyecto.getUrl());
 			ps.setInt(8, proyecto2.getId());
 			
 			ps.executeUpdate();
-			ps.close();
 			
 			JOptionPane.showMessageDialog(null, "Proyecto actualizado");
 		} catch(SQLException | ClassNotFoundException e) {
@@ -388,4 +405,27 @@ public class PersistenciaProyectos {
 		
 		return listProject;
 	}
+	
+	public PojoProyecto nombreCiclo(PojoProyecto proyecto, int idCiclo) {
+		PojoProyecto project = null;
+		Connection con = null;
+		ResultSet rset;
+		String query = "SELECT Nombre FROM Ciclos WHERE ID = ?";
+		
+		try {
+			con = acces.getConexion();
+			PreparedStatement prst = con.prepareStatement(query);
+			prst.setInt(1, idCiclo);
+			rset = prst.executeQuery();
+			
+			while (rset.next()) {
+				
+				project = new PojoProyecto(proyecto.getNombre(), proyecto.getGrupo(), proyecto.getAnyo(), proyecto.getCurso(), 
+						proyecto.getNota(), rset.getString("Nombre"), proyecto.getUrl());
+			}
+		} catch (SQLException | ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + " " + e.getMessage());
+		}
+	return project;
+}
 }

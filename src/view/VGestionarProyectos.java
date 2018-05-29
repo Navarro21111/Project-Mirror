@@ -33,6 +33,7 @@ public class VGestionarProyectos extends JPanel {
 	private String curso;
 	private int nota;
 	private String ciclo;
+	private int ciclo2;
 	private String url;
 	private int id;
 	private JComboBox<String> cbFiltro;
@@ -109,6 +110,12 @@ public class VGestionarProyectos extends JPanel {
 		PojoProyecto datos = new PojoProyecto(id, nombre, grupo, anyo, curso, nota, ciclo, url);
 		
 		return datos;
+	}
+	
+	public int idCiclo() {
+		ciclo2 = Integer.parseInt(JListProyectos.getSelectedValue().getCiclo());
+		
+		return ciclo2;
 	}
 	
 	public void setControlador(controlador c) {

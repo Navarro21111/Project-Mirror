@@ -52,12 +52,6 @@ public class VMostrarCiclos extends JPanel {
 		add(scrollPane);
 		
 		JLMostrarCiclos = new JList();
-		JLMostrarCiclos.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				btnEliminarCiclo.setEnabled(true);
-			}
-		});
 		scrollPane.setViewportView(JLMostrarCiclos);
 		
 		btnEliminarCiclo = new JButton("Eliminar Ciclo");

@@ -7,17 +7,20 @@ import javax.swing.JOptionPane;
 
 import persistencia.PersistenciaAlumnos;
 import persistencia.PersistenciaCiclos;
+import persistencia.PersistenciaLogin;
 import persistencia.PersistenciaProyectos;
 import view.VAltaProyecto;
 import view.VAmpliarInformacion;
 import view.VConsultarAlumnos;
 import view.VGestionarProyectos;
 import view.VInsertarCiclos;
+import view.VLogin;
 import view.VModificarAlumnos;
 import view.VModificarCiclos;
 import view.VModificarProyectos;
 import view.VMostrarCiclos;
 import view.VRegistroAlumnos;
+import view.VRegistroUsuario;
 import view.VPrincipal;
 
 public class controlador implements ActionListener {
@@ -36,10 +39,14 @@ public class controlador implements ActionListener {
 	private VGestionarProyectos gestProj;
 	private VModificarProyectos modProj;
 	private VAmpliarInformacion ampliInfor;
+	private PersistenciaLogin persLogin;
+	private VLogin vlog;
+	private VRegistroUsuario regisUsur;
 
 	public controlador(VPrincipal principal, VAltaProyecto altaProject, VRegistroAlumnos altaAlum, VConsultarAlumnos consultAlum, 
 			VInsertarCiclos insertCiclos, VMostrarCiclos mostrarCiclos, VModificarAlumnos modAlum, VModificarCiclos modCiclo,
-			PersistenciaProyectos persProy, VGestionarProyectos gestProj, VModificarProyectos modProj) {
+			PersistenciaProyectos persProy, VGestionarProyectos gestProj, VModificarProyectos modProj, VLogin vlog, 
+			VRegistroUsuario regisUsur) {
 		this.principal = principal;
 		this.altaProject = altaProject;
 		this.altaAlum = altaAlum;
@@ -51,6 +58,8 @@ public class controlador implements ActionListener {
 		this.persProy = persProy;
 		this.gestProj = gestProj;
 		this.modProj = modProj;
+		this.vlog = vlog;
+		this.regisUsur = regisUsur;
 	}
 
 	public void setAltaProject(VAltaProyecto altaProject) {
@@ -105,12 +114,24 @@ public class controlador implements ActionListener {
 		this.ampliInfor = ampliInfor;
 	}
 
+	public void setVlog(VLogin vlog) {
+		this.vlog = vlog;
+	}
+
+	public void setPersLogin(PersistenciaLogin persLogin) {
+		this.persLogin = persLogin;
+	}
+
+	public void setRegisUsur(VRegistroUsuario regisUsur) {
+		this.regisUsur = regisUsur;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {	
 		if (e.getSource().equals(principal.getMntmAlta())) {
-			altaProject.setVisible(true);
 			altaProject.aadirComboBox(persCiclos.ArrayCiclos());
 			altaProject.getJListAlum().setModel(persAlumnos.ArrayAlumnos());
+			altaProject.setVisible(true);
 			
 		} else if (e.getSource().equals(principal.getMntmAadirAlumnos())) {
 			principal.setPanel(altaAlum);
@@ -120,7 +141,13 @@ public class controlador implements ActionListener {
 			consultAlum.getJListAlum().setModel(persAlumnos.mostrarAlumnos());
 			
 		} else if (e.getSource().equals(altaAlum.getBtnGuardarAlumno())) {
-			persAlumnos.insertarAlumnos(altaAlum.recogerDatos());
+			try {
+				persAlumnos.insertarAlumnos(altaAlum.recogerDatos());
+				
+			} catch (NumberFormatException e2) {
+				JOptionPane.showMessageDialog(altaAlum, "El nº de Expediente tan solo debe de ser números");
+			}
+			
 			
 		} else if (e.getSource().equals(altaAlum.getBtnHome())) {
 			principal.setPanel(principal.getPanel1());
@@ -194,6 +221,7 @@ public class controlador implements ActionListener {
 		} else if (e.getSource().equals(gestProj.getBtnEliminarProyecto())) {
 			try {
 				persProy.eliminarProyectos(gestProj.recogerDatos());
+				gestProj.getJListProyectos().setModel(persProy.mostrarProyectos());
 				
 			} catch (NullPointerException e2) {
 				JOptionPane.showMessageDialog(consultAlum, "Se debe seleccionar un Proyecto");
@@ -226,7 +254,7 @@ public class controlador implements ActionListener {
 			
 		} else if (e.getSource().equals(gestProj.getBtnAmpliarInformacin())) {
 			try {
-				ampliInfor.ponerDatos(gestProj.recogerDatos());
+				ampliInfor.ponerDatos(persProy.nombreCiclo(gestProj.recogerDatos(), gestProj.idCiclo()));
 				ampliInfor.getJListAlum().setModel(persProy.AlumnosEnProyecto(gestProj.recogerDatos()));
 				ampliInfor.setVisible(true);
 			} catch (NullPointerException e2) {
@@ -253,6 +281,27 @@ public class controlador implements ActionListener {
 			
 		} else if (e.getSource().equals(gestProj.getBtnHome())) {
 			principal.setPanel(principal.getPanel1());
+			
+		} else if (e.getSource().equals(vlog.getBtnIniciarSesión())) {
+			boolean correcto = persLogin.loginCorrecto(vlog.recogerDatos());
+			
+			if (correcto == true) {
+				vlog.setVisible(false);
+				principal.setVisible(true);
+			} else {
+				JOptionPane.showMessageDialog(vlog, "Usuario o contraseña incorrecto");
+			}
+		} else if (e.getSource().equals(principal.getMntmRegistrarUsuario())) {
+			principal.setPanel(regisUsur);
+			
+		} else if (e.getSource().equals(regisUsur.getBtnRegisUsuario())) {
+			persLogin.insertarUsuario(regisUsur.recogerDatos());
+			
+		} else if (e.getSource().equals(regisUsur.getBtnHome())) {
+			principal.setPanel(principal.getPanel1());
+			
+		} else if (e.getSource().equals(vlog.getBtnSalir())) {
+			System.exit(0);
 			
 		}
 	}

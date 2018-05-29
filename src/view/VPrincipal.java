@@ -37,6 +37,7 @@ public class VPrincipal extends JFrame {
 	private JMenuItem mntmAadirCiclos;
 	private JMenuItem mntmGestionarCiclos;
 	private JMenuItem mntmGestionarProyectos;
+	private JMenuItem mntmRegistrarUsuario;
 
 	public VPrincipal(String titulo) throws HeadlessException {
 		super(titulo);
@@ -150,6 +151,9 @@ public class VPrincipal extends JFrame {
 		mntmGestionarCiclos = new JMenuItem("Gestionar Ciclos");
 		mnCiclos.add(mntmGestionarCiclos);
 		
+		mntmRegistrarUsuario = new JMenuItem("Registrar Usuario");
+		menuBar.add(mntmRegistrarUsuario);
+		
 		setLocationRelativeTo(null);
 	}
 	
@@ -164,6 +168,7 @@ public class VPrincipal extends JFrame {
 		mntmAadirCiclos.addActionListener(c);
 		mntmGestionarCiclos.addActionListener(c);
 		mntmGestionarProyectos.addActionListener(c);
+		mntmRegistrarUsuario.addActionListener(c);
 		
 	}
 
@@ -193,5 +198,9 @@ public class VPrincipal extends JFrame {
 
 	public JMenuItem getMntmGestionarProyectos() {
 		return mntmGestionarProyectos;
+	}
+
+	public JMenuItem getMntmRegistrarUsuario() {
+		return mntmRegistrarUsuario;
 	}
 }

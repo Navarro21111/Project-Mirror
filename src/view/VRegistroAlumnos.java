@@ -107,7 +107,7 @@ public class VRegistroAlumnos extends JPanel {
 		
 	}
 	
-	public PojoAlumno recogerDatos() {
+	public PojoAlumno recogerDatos() throws NumberFormatException {
 		expediente = Integer.parseInt(txtNExp.getText());
 		nombre = txtNom.getText();
 		primApe = txtPrimApellido.getText();

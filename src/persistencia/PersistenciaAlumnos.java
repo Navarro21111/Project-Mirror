@@ -27,15 +27,21 @@ public class PersistenciaAlumnos {
 		
 		try {
 			
-			con = acces.getConexion();
-			ps = con.prepareStatement(query);
-			ps.setInt(1, alumno.getnExp());
-			ps.setString(2, alumno.getNombre());
-			ps.setString(3, alumno.getApellido1());
-			ps.setString(4, alumno.getApellido2());
+			/*if (alumno.getnExp()) {
+				JOptionPane.showMessageDialog(null, "El campo Nº Exepediente debe ser un número");
+			} else {*/
+				con = acces.getConexion();
+				ps = con.prepareStatement(query);
+				ps.setInt(1, alumno.getnExp());
+				ps.setString(2, alumno.getNombre());
+				ps.setString(3, alumno.getApellido1());
+				ps.setString(4, alumno.getApellido2());
+				
+				ps.executeUpdate();
+				JOptionPane.showMessageDialog(null, "Alumno guardado");
+			//b}
 			
-			ps.executeUpdate();
-			JOptionPane.showMessageDialog(null, "Alumno guardado");
+			
 			
 		} catch(SQLException | ClassNotFoundException e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido realizar la operación" + e.getMessage());
