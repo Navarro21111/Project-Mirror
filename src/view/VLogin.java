@@ -66,7 +66,7 @@ public class VLogin extends JDialog {
 		btnSalir = new JButton("");
 		btnSalir.setFocusPainted(false);
 		btnSalir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnSalir.setIcon(new ImageIcon(VLogin.class.getResource("/images/apagar24.png")));
+		btnSalir.setIcon(new ImageIcon(VLogin.class.getResource("/images/apagar25.png")));
 		btnSalir.setContentAreaFilled(false);
 		btnSalir.setBorder(new LineBorder(Color.WHITE, 2));
 		btnSalir.setBounds(421, 6, 54, 55);
