@@ -32,7 +32,12 @@ public class VInsertarCiclos extends JPanel {
 		lblAgregarCiclos.setBounds(74, 73, 338, 98);
 		add(lblAgregarCiclos);
 		
-		btnAgregarCiclo = new JButton("Agregar Ciclo");
+		btnAgregarCiclo = new JButton("");
+		btnAgregarCiclo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAgregarCiclo.setRolloverIcon(new ImageIcon(VInsertarCiclos.class.getResource("/images/ac1.png")));
+		btnAgregarCiclo.setContentAreaFilled(false);
+		btnAgregarCiclo.setBorderPainted(false);
+		btnAgregarCiclo.setIcon(new ImageIcon(VInsertarCiclos.class.getResource("/images/ac.png")));
 		btnAgregarCiclo.setBounds(225, 479, 168, 46);
 		add(btnAgregarCiclo);
 		
@@ -42,7 +47,7 @@ public class VInsertarCiclos extends JPanel {
 		lblNombre.setBounds(109, 205, 94, 25);
 		add(lblNombre);
 		
-		JLabel lblDescripcin = new JLabel("DescripciÃ³n:");
+		JLabel lblDescripcin = new JLabel("Descripción:");
 		lblDescripcin.setForeground(Color.WHITE);
 		lblDescripcin.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		lblDescripcin.setBounds(109, 307, 154, 34);

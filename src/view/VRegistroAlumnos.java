@@ -82,7 +82,12 @@ public class VRegistroAlumnos extends JPanel {
 		txtSegunApellido.setBounds(288, 363, 151, 30);
 		add(txtSegunApellido);
 		
-		btnGuardarAlumno = new JButton("Guardar Alumno");
+		btnGuardarAlumno = new JButton("");
+		btnGuardarAlumno.setRolloverIcon(new ImageIcon(VRegistroAlumnos.class.getResource("/images/ga1.png")));
+		btnGuardarAlumno.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGuardarAlumno.setContentAreaFilled(false);
+		btnGuardarAlumno.setBorderPainted(false);
+		btnGuardarAlumno.setIcon(new ImageIcon(VRegistroAlumnos.class.getResource("/images/ga.png")));
 		btnGuardarAlumno.setBounds(119, 459, 310, 44);
 		add(btnGuardarAlumno);
 		

@@ -282,7 +282,7 @@ public class controlador implements ActionListener {
 		} else if (e.getSource().equals(gestProj.getBtnHome())) {
 			principal.setPanel(principal.getPanel1());
 			
-		} else if (e.getSource().equals(vlog.getBtnIniciarSesión())) {
+		} else if (e.getSource().equals(vlog.getBtnIniciarSesion())) {
 			boolean correcto = persLogin.loginCorrecto(vlog.recogerDatos());
 			
 			if (correcto == true) {

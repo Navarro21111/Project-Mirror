@@ -64,20 +64,35 @@ public class VGestionarProyectos extends JPanel {
 		JListProyectos = new JList();
 		scrollPane.setViewportView(JListProyectos);
 		
-		btnModificarProyecto = new JButton("Modificar Proyecto");
-		btnModificarProyecto.setBounds(18, 483, 161, 41);
+		btnModificarProyecto = new JButton("");
+		btnModificarProyecto.setRolloverIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/mp1.png")));
+		btnModificarProyecto.setIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/mp.png")));
+		btnModificarProyecto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnModificarProyecto.setContentAreaFilled(false);
+		btnModificarProyecto.setBorderPainted(false);
+		btnModificarProyecto.setBounds(0, 483, 192, 41);
 		add(btnModificarProyecto);
 		
-		btnEliminarProyecto = new JButton("Eliminar Proyecto");
-		btnEliminarProyecto.setBounds(418, 483, 161, 41);
+		btnEliminarProyecto = new JButton("");
+		btnEliminarProyecto.setRolloverIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/ep1.png")));
+		btnEliminarProyecto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnEliminarProyecto.setContentAreaFilled(false);
+		btnEliminarProyecto.setBorderPainted(false);
+		btnEliminarProyecto.setIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/ep.png")));
+		btnEliminarProyecto.setBounds(419, 483, 168, 41);
 		add(btnEliminarProyecto);
 		
-		btnAmpliarInformacin = new JButton("Ampliar Información");
-		btnAmpliarInformacin.setBounds(215, 483, 168, 41);
+		btnAmpliarInformacin = new JButton("");
+		btnAmpliarInformacin.setRolloverIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/ai1.png")));
+		btnAmpliarInformacin.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAmpliarInformacin.setContentAreaFilled(false);
+		btnAmpliarInformacin.setBorderPainted(false);
+		btnAmpliarInformacin.setIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/ai.png")));
+		btnAmpliarInformacin.setBounds(202, 483, 207, 41);
 		add(btnAmpliarInformacin);
 		
 		cbFiltro = new JComboBox<String>();
-		cbFiltro.setModel(new DefaultComboBoxModel<String>(new String[] {"Todos", "Nombre", "Ciclo", "Año", "Nota", "Grupo"}));
+		cbFiltro.setModel(new DefaultComboBoxModel<String>(new String[] {"Todos", "Nombre", "Ciclo", "A�o", "Nota", "Grupo"}));
 		cbFiltro.setBounds(44, 65, 150, 27);
 		add(cbFiltro);
 		
@@ -86,7 +101,12 @@ public class VGestionarProyectos extends JPanel {
 		add(txtFiltro);
 		txtFiltro.setColumns(10);
 		
-		btnFiltrar = new JButton("Filtrar Proyectos");
+		btnFiltrar = new JButton("");
+		btnFiltrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnFiltrar.setRolloverIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/fp1.png")));
+		btnFiltrar.setIcon(new ImageIcon(VGestionarProyectos.class.getResource("/images/fp.png")));
+		btnFiltrar.setContentAreaFilled(false);
+		btnFiltrar.setBorderPainted(false);
 		btnFiltrar.setBounds(184, 104, 168, 41);
 		add(btnFiltrar);
 		

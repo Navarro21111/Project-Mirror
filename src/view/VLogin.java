@@ -17,11 +17,13 @@ import javax.swing.border.LineBorder;
 import java.awt.Cursor;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VLogin extends JDialog {
 	private JPasswordField pwContrasenia;
 	private JTextField txtUsuario;
-	private JButton btnIniciarSesión;
+	private JButton btnIniciarSesion;
 	private String usuario;
 	private JButton btnSalir;
 
@@ -38,7 +40,7 @@ public class VLogin extends JDialog {
 		lblUsuario.setBounds(123, 117, 87, 27);
 		getContentPane().add(lblUsuario);
 		
-		JLabel lblContrasea = new JLabel("Contraseña:");
+		JLabel lblContrasea = new JLabel("Contrase�a:");
 		lblContrasea.setForeground(Color.WHITE);
 		lblContrasea.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblContrasea.setBounds(123, 205, 141, 34);
@@ -53,11 +55,20 @@ public class VLogin extends JDialog {
 		getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		btnIniciarSesión = new JButton("Iniciar Sesión");
-		btnIniciarSesión.setBounds(132, 309, 178, 46);
-		getContentPane().add(btnIniciarSesión);
+		btnIniciarSesion = new JButton("");
+		btnIniciarSesion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnIniciarSesion.setRolloverIcon(new ImageIcon(VLogin.class.getResource("/images/login1.png")));
+		btnIniciarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnIniciarSesion.setContentAreaFilled(false);
+		btnIniciarSesion.setBorderPainted(false);
+		btnIniciarSesion.setIcon(new ImageIcon(VLogin.class.getResource("/images/login.png")));
+		btnIniciarSesion.setBounds(185, 288, 89, 72);
+		getContentPane().add(btnIniciarSesion);
 		
-		JLabel lblIniciarSesin = new JLabel("Iniciar Sesión");
+		JLabel lblIniciarSesin = new JLabel("Iniciar Sesion");
 		lblIniciarSesin.setForeground(Color.WHITE);
 		lblIniciarSesin.setFont(new Font("Dialog", Font.PLAIN, 40));
 		lblIniciarSesin.setBounds(62, 19, 316, 72);
@@ -76,12 +87,12 @@ public class VLogin extends JDialog {
 	}
 	
 	public void setControlador(controlador c) {
-		btnIniciarSesión.addActionListener(c);
+		btnIniciarSesion.addActionListener(c);
 		btnSalir.addActionListener(c);
 	}
 
-	public JButton getBtnIniciarSesión() {
-		return btnIniciarSesión;
+	public JButton getBtnIniciarSesion() {
+		return btnIniciarSesion;
 	}
 
 	public JButton getBtnSalir() {

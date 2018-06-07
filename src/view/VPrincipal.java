@@ -101,7 +101,7 @@ public class VPrincipal extends JFrame {
 		lblJuanNotario.setBounds(33, 442, 99, 24);
 		panel_1.add(lblJuanNotario);
 		
-		lblMiguelSnchez = new JLabel("Miguel SÃ¡nchez");
+		lblMiguelSnchez = new JLabel("Miguel Sánchez");
 		lblMiguelSnchez.setForeground(Color.WHITE);
 		lblMiguelSnchez.setFont(new Font("Comic Sans MS", Font.PLAIN, 13));
 		lblMiguelSnchez.setBounds(33, 471, 99, 24);
@@ -152,6 +152,8 @@ public class VPrincipal extends JFrame {
 		mnCiclos.add(mntmGestionarCiclos);
 		
 		mntmRegistrarUsuario = new JMenuItem("Registrar Usuario");
+		mntmRegistrarUsuario.setFocusable(true);
+		mntmRegistrarUsuario.setForeground(new Color(44, 40, 41));
 		menuBar.add(mntmRegistrarUsuario);
 		
 		setLocationRelativeTo(null);

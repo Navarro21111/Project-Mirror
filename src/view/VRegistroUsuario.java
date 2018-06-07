@@ -38,7 +38,7 @@ public class VRegistroUsuario extends JPanel {
 		txtUsuario.setBounds(175, 216, 190, 26);
 		add(txtUsuario);
 		
-		JLabel label_1 = new JLabel("ContraseÃ±a:");
+		JLabel label_1 = new JLabel("Contraseña:");
 		label_1.setForeground(Color.WHITE);
 		label_1.setFont(new Font("Dialog", Font.PLAIN, 20));
 		label_1.setBounds(175, 291, 141, 34);
@@ -48,7 +48,12 @@ public class VRegistroUsuario extends JPanel {
 		pwContrasenia.setBounds(175, 337, 190, 26);
 		add(pwContrasenia);
 		
-		btnRegisUsuario = new JButton("Registrar Usuario");
+		btnRegisUsuario = new JButton("");
+		btnRegisUsuario.setRolloverIcon(new ImageIcon(VRegistroUsuario.class.getResource("/images/ru1.png")));
+		btnRegisUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnRegisUsuario.setContentAreaFilled(false);
+		btnRegisUsuario.setBorderPainted(false);
+		btnRegisUsuario.setIcon(new ImageIcon(VRegistroUsuario.class.getResource("/images/ru.png")));
 		btnRegisUsuario.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		btnRegisUsuario.setBounds(175, 428, 193, 55);
 		add(btnRegisUsuario);

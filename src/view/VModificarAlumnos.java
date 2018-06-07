@@ -12,6 +12,7 @@ import model.PojoAlumno;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import java.awt.Cursor;
 
 public class VModificarAlumnos extends JPanel {
 	private JTextField txtExp;
@@ -42,8 +43,13 @@ public class VModificarAlumnos extends JPanel {
 		btnHome.setBounds(485, 41, 54, 55);
 		add(btnHome);
 		
-		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(219, 481, 156, 42);
+		btnModificar = new JButton("");
+		btnModificar.setRolloverIcon(new ImageIcon(VModificarAlumnos.class.getResource("/images/m1.png")));
+		btnModificar.setContentAreaFilled(false);
+		btnModificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnModificar.setBorderPainted(false);
+		btnModificar.setIcon(new ImageIcon(VModificarAlumnos.class.getResource("/images/m.png")));
+		btnModificar.setBounds(249, 458, 122, 42);
 		add(btnModificar);
 		
 		JLabel lblExpediente = new JLabel("Expediente:");

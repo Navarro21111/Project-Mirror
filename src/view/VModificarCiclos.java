@@ -15,6 +15,7 @@ import model.PojoCiclo;
 import javax.swing.ImageIcon;
 
 import javax.swing.JPanel;
+import java.awt.Cursor;
 
 public class VModificarCiclos extends JPanel {
 	private JTextField txtNombre;
@@ -55,7 +56,12 @@ public class VModificarCiclos extends JPanel {
 		lblModificarCiclos.setBounds(89, 22, 338, 98);
 		add(lblModificarCiclos);
 		
-		btnModificarCiclo = new JButton("Modificar Ciclo");
+		btnModificarCiclo = new JButton("");
+		btnModificarCiclo.setRolloverIcon(new ImageIcon(VModificarCiclos.class.getResource("/images/mc1.png")));
+		btnModificarCiclo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnModificarCiclo.setContentAreaFilled(false);
+		btnModificarCiclo.setBorderPainted(false);
+		btnModificarCiclo.setIcon(new ImageIcon(VModificarCiclos.class.getResource("/images/mc.png")));
 		btnModificarCiclo.setBounds(205, 474, 168, 46);
 		add(btnModificarCiclo);
 		

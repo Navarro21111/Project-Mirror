@@ -54,11 +54,21 @@ public class VMostrarCiclos extends JPanel {
 		JLMostrarCiclos = new JList();
 		scrollPane.setViewportView(JLMostrarCiclos);
 		
-		btnEliminarCiclo = new JButton("Eliminar Ciclo");
+		btnEliminarCiclo = new JButton("");
+		btnEliminarCiclo.setRolloverIcon(new ImageIcon(VMostrarCiclos.class.getResource("/images/ec1.png")));
+		btnEliminarCiclo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnEliminarCiclo.setContentAreaFilled(false);
+		btnEliminarCiclo.setBorderPainted(false);
+		btnEliminarCiclo.setIcon(new ImageIcon(VMostrarCiclos.class.getResource("/images/ec.png")));
 		btnEliminarCiclo.setBounds(71, 485, 188, 38);
 		add(btnEliminarCiclo);
 		
-		btnModificarCiclo = new JButton("Modificar Ciclo");
+		btnModificarCiclo = new JButton("");
+		btnModificarCiclo.setRolloverIcon(new ImageIcon(VMostrarCiclos.class.getResource("/images/mc1.png")));
+		btnModificarCiclo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnModificarCiclo.setContentAreaFilled(false);
+		btnModificarCiclo.setBorderPainted(false);
+		btnModificarCiclo.setIcon(new ImageIcon(VMostrarCiclos.class.getResource("/images/mc.png")));
 		btnModificarCiclo.setBounds(328, 485, 188, 38);
 		add(btnModificarCiclo);
 	}

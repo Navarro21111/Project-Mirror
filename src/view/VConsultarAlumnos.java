@@ -57,11 +57,21 @@ public class VConsultarAlumnos extends JPanel {
 		JListAlum.setBackground(Color.WHITE);
 		scrollPane.setViewportView(JListAlum);
 		
-		btnEliminarAlumno = new JButton("Eliminar Alumno");
+		btnEliminarAlumno = new JButton("");
+		btnEliminarAlumno.setRolloverIcon(new ImageIcon(VConsultarAlumnos.class.getResource("/images/ea1.png")));
+		btnEliminarAlumno.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnEliminarAlumno.setContentAreaFilled(false);
+		btnEliminarAlumno.setBorderPainted(false);
+		btnEliminarAlumno.setIcon(new ImageIcon(VConsultarAlumnos.class.getResource("/images/ea.png")));
 		btnEliminarAlumno.setBounds(52, 494, 170, 44);
 		add(btnEliminarAlumno);
 		
-		btnModificarAlumno = new JButton("Modificar Alumno");
+		btnModificarAlumno = new JButton("");
+		btnModificarAlumno.setRolloverIcon(new ImageIcon(VConsultarAlumnos.class.getResource("/images/ma1.png")));
+		btnModificarAlumno.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnModificarAlumno.setContentAreaFilled(false);
+		btnModificarAlumno.setBorderPainted(false);
+		btnModificarAlumno.setIcon(new ImageIcon(VConsultarAlumnos.class.getResource("/images/ma.png")));
 		btnModificarAlumno.setBounds(346, 494, 170, 44);
 		add(btnModificarAlumno);
 		

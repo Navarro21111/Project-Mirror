@@ -92,7 +92,7 @@ public class VAltaProyecto extends JDialog {
 		cbGrupo.setBounds(117, 186, 86, 20);
 		getContentPane().add(cbGrupo);
 		
-		JLabel label_3 = new JLabel("AÃ‘O:");
+		JLabel label_3 = new JLabel("AÑO:");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Dialog", Font.BOLD, 15));
 		label_3.setBounds(259, 185, 43, 19);
@@ -105,7 +105,7 @@ public class VAltaProyecto extends JDialog {
 		getContentPane().add(label_4);
 		
 		cbCurso = new JComboBox();
-		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1Âº", "2Âº", "3Âº", "4Âº", "5Âº"}));
+		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1º", "2º", "3º", "4º", "5º"}));
 		cbCurso.setBounds(117, 247, 86, 20);
 		getContentPane().add(cbCurso);
 		
@@ -148,7 +148,7 @@ public class VAltaProyecto extends JDialog {
 		JListAlum = new JList();
 		spAlumnos.setViewportView(JListAlum);
 		
-		JLabel lblSeleccionaLosAlumnos = new JLabel("Selecciona los alumnos que desee aÃ±adir:");
+		JLabel lblSeleccionaLosAlumnos = new JLabel("Selecciona los alumnos que desee añadir:");
 		lblSeleccionaLosAlumnos.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblSeleccionaLosAlumnos.setForeground(Color.WHITE);
 		lblSeleccionaLosAlumnos.setBounds(577, 74, 339, 20);
@@ -159,8 +159,14 @@ public class VAltaProyecto extends JDialog {
 		jsAnyo.setBounds(336, 186, 86, 20);
 		getContentPane().add(jsAnyo);
 		
-		btnCrearProyecto = new JButton("Crear Proyecto");
-		btnCrearProyecto.setBounds(155, 435, 218, 48);
+		btnCrearProyecto = new JButton("");
+		btnCrearProyecto.setContentAreaFilled(false);
+		btnCrearProyecto.setOpaque(false);
+		btnCrearProyecto.setBorderPainted(false);
+		btnCrearProyecto.setRolloverIcon(new ImageIcon(VAltaProyecto.class.getResource("/images/cp1.png")));
+		btnCrearProyecto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnCrearProyecto.setIcon(new ImageIcon(VAltaProyecto.class.getResource("/images/cp.png")));
+		btnCrearProyecto.setBounds(266, 419, 156, 47);
 		getContentPane().add(btnCrearProyecto);
 		
 		setLocationRelativeTo(null);
