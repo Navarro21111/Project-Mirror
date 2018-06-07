@@ -303,6 +303,8 @@ public class controlador implements ActionListener {
 		} else if (e.getSource().equals(vlog.getBtnSalir())) {
 			System.exit(0);
 			
+		} else if (e.getSource().equals(modCiclo.getBtnHome())) {
+			principal.setPanel(principal.getPanel1());
 		}
 	}
 }

@@ -90,7 +90,7 @@ public class VModificarProyectos extends JDialog {
 		cbGrupo.setBounds(114, 259, 86, 20);
 		getContentPane().add(cbGrupo);
 		
-		JLabel label_3 = new JLabel("AÑO:");
+		JLabel label_3 = new JLabel("Aï¿½O:");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Dialog", Font.BOLD, 15));
 		label_3.setBounds(259, 258, 43, 19);
@@ -103,7 +103,7 @@ public class VModificarProyectos extends JDialog {
 		getContentPane().add(label_4);
 		
 		cbCurso = new JComboBox();
-		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1º", "2º", "3º", "4º", "5º"}));
+		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1Âº", "2Âº", "3Âº", "4Âº", "5Âº"}));
 		cbCurso.setBounds(117, 320, 86, 20);
 		getContentPane().add(cbCurso);
 		
@@ -192,7 +192,7 @@ public class VModificarProyectos extends JDialog {
 		lblAlumnosDisponibles.setBounds(571, 358, 339, 20);
 		getContentPane().add(lblAlumnosDisponibles);
 		
-		btnAadirAlumnosAl = new JButton("Añadir al proyecto");
+		btnAadirAlumnosAl = new JButton("Aï¿½adir al proyecto");
 		btnAadirAlumnosAl.setRolloverIcon(new ImageIcon(VModificarProyectos.class.getResource("/images/aap1.png")));
 		btnAadirAlumnosAl.setIcon(new ImageIcon(VModificarProyectos.class.getResource("/images/aap.png")));
 		btnAadirAlumnosAl.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

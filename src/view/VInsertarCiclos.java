@@ -47,7 +47,7 @@ public class VInsertarCiclos extends JPanel {
 		lblNombre.setBounds(109, 205, 94, 25);
 		add(lblNombre);
 		
-		JLabel lblDescripcin = new JLabel("Descripción:");
+		JLabel lblDescripcin = new JLabel("DescripciÃ³n:");
 		lblDescripcin.setForeground(Color.WHITE);
 		lblDescripcin.setFont(new Font("Times New Roman", Font.PLAIN, 21));
 		lblDescripcin.setBounds(109, 307, 154, 34);

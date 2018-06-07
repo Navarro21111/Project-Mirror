@@ -40,7 +40,7 @@ public class VLogin extends JDialog {
 		lblUsuario.setBounds(123, 117, 87, 27);
 		getContentPane().add(lblUsuario);
 		
-		JLabel lblContrasea = new JLabel("Contrase�a:");
+		JLabel lblContrasea = new JLabel("Contraseña:");
 		lblContrasea.setForeground(Color.WHITE);
 		lblContrasea.setFont(new Font("Dialog", Font.PLAIN, 20));
 		lblContrasea.setBounds(123, 205, 141, 34);
@@ -68,7 +68,7 @@ public class VLogin extends JDialog {
 		btnIniciarSesion.setBounds(185, 288, 89, 72);
 		getContentPane().add(btnIniciarSesion);
 		
-		JLabel lblIniciarSesin = new JLabel("Iniciar Sesion");
+		JLabel lblIniciarSesin = new JLabel("Iniciar Sesión");
 		lblIniciarSesin.setForeground(Color.WHITE);
 		lblIniciarSesin.setFont(new Font("Dialog", Font.PLAIN, 40));
 		lblIniciarSesin.setBounds(62, 19, 316, 72);

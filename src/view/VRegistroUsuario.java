@@ -24,6 +24,7 @@ public class VRegistroUsuario extends JPanel {
 	private JLabel lblRegistrarUsuario;
 	
 	public VRegistroUsuario() {
+		setBorder(new LineBorder(Color.WHITE, 2));
 		setBackground(new Color(44, 40, 41));
 		setLayout(null);
 		
@@ -38,17 +39,18 @@ public class VRegistroUsuario extends JPanel {
 		txtUsuario.setBounds(175, 216, 190, 26);
 		add(txtUsuario);
 		
-		JLabel label_1 = new JLabel("Contraseña:");
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-		label_1.setBounds(175, 291, 141, 34);
-		add(label_1);
+		JLabel lblContrasea = new JLabel("ContraseÃ±a:");
+		lblContrasea.setForeground(Color.WHITE);
+		lblContrasea.setFont(new Font("Dialog", Font.PLAIN, 20));
+		lblContrasea.setBounds(175, 291, 141, 34);
+		add(lblContrasea);
 		
 		pwContrasenia = new JPasswordField();
 		pwContrasenia.setBounds(175, 337, 190, 26);
 		add(pwContrasenia);
 		
 		btnRegisUsuario = new JButton("");
+		btnRegisUsuario.setBorder(new LineBorder(Color.WHITE));
 		btnRegisUsuario.setRolloverIcon(new ImageIcon(VRegistroUsuario.class.getResource("/images/ru1.png")));
 		btnRegisUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnRegisUsuario.setContentAreaFilled(false);

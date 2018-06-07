@@ -92,7 +92,7 @@ public class VAltaProyecto extends JDialog {
 		cbGrupo.setBounds(117, 186, 86, 20);
 		getContentPane().add(cbGrupo);
 		
-		JLabel label_3 = new JLabel("AÑO:");
+		JLabel label_3 = new JLabel("Aï¿½O:");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Dialog", Font.BOLD, 15));
 		label_3.setBounds(259, 185, 43, 19);
@@ -105,7 +105,7 @@ public class VAltaProyecto extends JDialog {
 		getContentPane().add(label_4);
 		
 		cbCurso = new JComboBox();
-		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1º", "2º", "3º", "4º", "5º"}));
+		cbCurso.setModel(new DefaultComboBoxModel(new String[] {"1Âº", "2Âº", "3Âº", "4Âº", "5Âº"}));
 		cbCurso.setBounds(117, 247, 86, 20);
 		getContentPane().add(cbCurso);
 		
@@ -148,7 +148,7 @@ public class VAltaProyecto extends JDialog {
 		JListAlum = new JList();
 		spAlumnos.setViewportView(JListAlum);
 		
-		JLabel lblSeleccionaLosAlumnos = new JLabel("Selecciona los alumnos que desee añadir:");
+		JLabel lblSeleccionaLosAlumnos = new JLabel("Selecciona los alumnos que desee aï¿½adir:");
 		lblSeleccionaLosAlumnos.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblSeleccionaLosAlumnos.setForeground(Color.WHITE);
 		lblSeleccionaLosAlumnos.setBounds(577, 74, 339, 20);

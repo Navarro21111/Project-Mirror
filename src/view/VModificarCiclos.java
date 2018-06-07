@@ -23,6 +23,7 @@ public class VModificarCiclos extends JPanel {
 	private JButton btnModificarCiclo;
 	private String nombre;
 	private String descripcion;
+	private JButton btnHome;
 	
 	public VModificarCiclos() {
 		setBackground(new Color(44, 40, 41));
@@ -65,20 +66,26 @@ public class VModificarCiclos extends JPanel {
 		btnModificarCiclo.setBounds(205, 474, 168, 46);
 		add(btnModificarCiclo);
 		
-		JButton button = new JButton("");
-		button.setIcon(new ImageIcon(VModificarCiclos.class.getResource("/images/Casitahome1.png")));
-		button.setContentAreaFilled(false);
-		button.setBorder(new LineBorder(Color.WHITE, 2, true));
-		button.setBounds(488, 32, 54, 55);
-		add(button);
+		btnHome = new JButton("");
+		btnHome.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnHome.setIcon(new ImageIcon(VModificarCiclos.class.getResource("/images/Casitahome1.png")));
+		btnHome.setContentAreaFilled(false);
+		btnHome.setBorder(new LineBorder(Color.WHITE, 2, true));
+		btnHome.setBounds(488, 32, 54, 55);
+		add(btnHome);
 	}
 	
 	public void setControlador(controlador c) {
 		btnModificarCiclo.addActionListener(c);
+		btnHome.addActionListener(c);
 	}
 	
 	public JButton getBtnModificarCiclo() {
 		return btnModificarCiclo;
+	}
+
+	public JButton getBtnHome() {
+		return btnHome;
 	}
 
 	public void blabla(PojoCiclo ciclo) {
