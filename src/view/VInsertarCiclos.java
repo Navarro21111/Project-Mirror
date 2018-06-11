@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 
 import controlador.controlador;
 import model.PojoCiclo;
+import model.PojoProyecto;
 
 import javax.swing.ImageIcon;
 import java.awt.Cursor;
@@ -86,13 +87,16 @@ public class VInsertarCiclos extends JPanel {
 		
 	}
 	
-	public PojoCiclo recogerDatosCiclo() {
+	public PojoCiclo recogerDatosCiclo() throws NullPointerException {
 		nombre = txtNombre.getText();
 		descripcion = txtDescripcion.getText();
 		
-		PojoCiclo datosCiclo = new PojoCiclo(nombre, descripcion);
+		if (!(nombre.equals(""))) {
+			PojoCiclo datosCiclo = new PojoCiclo(nombre, descripcion);
+			return datosCiclo;
+		} 
 		
-		return datosCiclo;
+		return null;
 		
 	}
 }

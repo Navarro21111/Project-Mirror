@@ -163,7 +163,11 @@ public class controlador implements ActionListener {
 			mostrarCiclos.getJLMostrarCiclos().setModel(persCiclos.mostrarCiclos());
 			
 		} else if (e.getSource().equals(insertCiclos.getBtnAgregarCiclo())) {
-			persCiclos.insertarCiclos(insertCiclos.recogerDatosCiclo());
+			try {
+				persCiclos.insertarCiclos(insertCiclos.recogerDatosCiclo());
+			} catch (NullPointerException e3) {
+				JOptionPane.showMessageDialog(consultAlum, "Se debe introducir un nombre");
+			}
 			
 		} else if (e.getSource().equals(insertCiclos.getBtnHome())) {
 			principal.setPanel(principal.getPanel1());
@@ -212,7 +216,12 @@ public class controlador implements ActionListener {
 			persCiclos.actualizarDatos(modCiclo.recogerDatosMod(), mostrarCiclos.recogerDatos());
 			
 		} else if (e.getSource().equals(altaProject.getBtnCrearProyecto())) {
-			persProy.insertarProyectos(altaProject.recogerDatosProyecto(), altaProject.recogerAlumnosProyecto());
+			try {
+				persProy.insertarProyectos(altaProject.recogerDatosProyecto(), altaProject.recogerAlumnosProyecto());
+			} catch (NullPointerException e3) {
+				JOptionPane.showMessageDialog(altaProject, "Se debe introducir un nombre");
+			}
+			
 			
 		} else if (e.getSource().equals(principal.getMntmGestionarProyectos())) {
 			principal.setPanel(gestProj);

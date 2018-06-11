@@ -24,6 +24,8 @@ import java.awt.Dimension;
 import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import model.PojoAlumno;
 import java.awt.Cursor;
 
@@ -196,7 +198,7 @@ public class VAltaProyecto extends JDialog {
 		return JListAlum;
 	}
 	
-	public PojoProyecto recogerDatosProyecto() {
+	public PojoProyecto recogerDatosProyecto() throws NullPointerException {
 		nombre = txtNombre.getText();
 		grupo = (String) cbGrupo.getItemAt(cbGrupo.getSelectedIndex());
 		curso = (String) cbCurso.getItemAt(cbCurso.getSelectedIndex());
@@ -205,9 +207,15 @@ public class VAltaProyecto extends JDialog {
 		URL = txtURL.getText();
 		ciclo = (String) cbCiclo.getItemAt(cbCiclo.getSelectedIndex());
 		
-		PojoProyecto datosProject = new PojoProyecto(nombre, grupo, anyo, curso, nota, ciclo, URL);
+		if (!(nombre.equals(""))) {
+			PojoProyecto datosProject = new PojoProyecto(nombre, grupo, anyo, curso, nota, ciclo, URL);
+			return datosProject;
+		} 
+			
 		
-		return datosProject;
+		
+		
+		return null;
 	}
 	
 	public ArrayList<PojoAlumno> recogerAlumnosProyecto() {
